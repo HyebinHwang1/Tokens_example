@@ -1,5 +1,5 @@
 {
-  "Hello": {
+  "Core": {
     "grey": {
       "0": {
         "$type": "color",
@@ -78,7 +78,7 @@
   "$themes": [],
   "$metadata": {
     "tokenSetOrder": [
-      "Hello"
+      "Core"
     ]
   }
 }
