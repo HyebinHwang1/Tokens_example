@@ -81,7 +81,7 @@
       },
       "primary": {
         "$type": "color",
-        "$value": "#04fb04"
+        "$value": "#1c05fa"
       }
     }
   },
