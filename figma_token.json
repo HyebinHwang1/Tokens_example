@@ -82,6 +82,10 @@
       "100": {
         "$type": "color",
         "$value": "#6c76fb"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#4249a2"
       }
     },
     "secondary": {
