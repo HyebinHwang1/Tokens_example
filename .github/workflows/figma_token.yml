@@ -1,0 +1,44 @@
+name: Transform Tokens
+
+on:
+  push:
+    branches:
+      - design
+    paths:
+      - figma_token.json
+
+jobs:
+  transform-tokens:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Token Transformer
+        run: |
+          style-dictionary build --config ./sd.config.js
+          git config --global user.name "사용자"
+          git config --global user.email "이메일"
+          git add .
+          git commit -m ''
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: design
+          title: "update token"
+          body: "This PR transforms tokens and updates styles automatically."
+          base: main

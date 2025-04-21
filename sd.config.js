@@ -19,7 +19,7 @@ await sd.registerFormat({
   format: function (params) {
     const tokens = params.allTokens;
     const names = tokens.map((token) => {
-      return { [token.name.replaceAll("core-", "--")]: token["$value"] };
+      return { [token.name.replaceAll("core-", "--color-")]: token["$value"] };
     });
 
     const cssVariables = names
