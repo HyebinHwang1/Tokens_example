@@ -83,6 +83,12 @@
         "$type": "color",
         "$value": "#6c76fb"
       }
+    },
+    "secondary": {
+      "100": {
+        "$type": "color",
+        "$value": "#ff35ad"
+      }
     }
   },
   "$themes": [],
