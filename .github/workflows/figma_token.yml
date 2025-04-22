@@ -24,9 +24,10 @@ jobs:
         run: npm install
 
       - name: Run Token Transformer
+        continue-on-error: true
         run: |
           npm install -g style-dictionary
-          style-dictionary build --config ./sd.config.js  --verbose / --silent / --no-warn
+          style-dictionary build --config ./sd.config.js
           git config --global user.name "사용자"
           git config --global user.email "이메일"
           git add .
