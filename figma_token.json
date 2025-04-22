@@ -91,7 +91,7 @@
     "secondary": {
       "100": {
         "$type": "color",
-        "$value": "#f00"
+        "$value": "#f000"
       }
     }
   },
