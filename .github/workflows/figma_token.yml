@@ -32,13 +32,12 @@ jobs:
           npm install -g style-dictionary
           style-dictionary build --config ./sd.config.js
 
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "HyebinHwang1"
-          git config --global user.email "medi.bin@gmail.com"
-          git add .
-          git commit -m "chore: update design tokens"
-          git push origin design
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: design
+          message: "chore: update design tokens"
 
       - name: Create pull request
         uses: thomaseizinger/create-pull-request@master
