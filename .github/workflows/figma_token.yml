@@ -27,11 +27,11 @@ jobs:
         continue-on-error: true
         run: |
           npm install -g style-dictionary
-          node -e "require('style-dictionary').build({ config: './sd.config.js' })" || true
+          style-dictionary build --config ./sd.config.js
           git config --global user.name "사용자"
           git config --global user.email "이메일"
           git add .
-          git commit -m 'chore: update tokens [skip ci]'
+          git commit -m 'update tokens'
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
