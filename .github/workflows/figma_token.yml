@@ -37,6 +37,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: design
+          author_name: "HyebinHwang1"
+          author_email: "medi.bin@gmail.com"
           message: "chore: update design tokens"
 
       - name: Create pull request
