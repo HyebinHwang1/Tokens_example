@@ -92,11 +92,17 @@
       "100": {
         "$type": "color",
         "$value": "#f00"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#c30000"
       }
     }
   },
   "$themes": [],
   "$metadata": {
-    "tokenSetOrder": ["core"]
+    "tokenSetOrder": [
+      "core"
+    ]
   }
 }
