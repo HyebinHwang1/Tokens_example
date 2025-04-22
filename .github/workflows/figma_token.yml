@@ -10,15 +10,10 @@ on:
 jobs:
   transform-tokens:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -37,9 +32,9 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.PAT_TOKEN }}
           commit-message: |
             update tokens
           title: Update AUTHORS
           body: Credit new contributors by updating AUTHORS
           branch: main
-          token: ${{ secrets.PAT_TOKEN }}
