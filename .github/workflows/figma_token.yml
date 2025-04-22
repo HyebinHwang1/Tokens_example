@@ -14,9 +14,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: design
-          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -31,6 +28,14 @@ jobs:
         run: |
           npm install -g style-dictionary
           style-dictionary build --config ./sd.config.js
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m "chore: update design tokens "
+          git push origin design
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
