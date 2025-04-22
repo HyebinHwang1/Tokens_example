@@ -28,6 +28,8 @@ jobs:
         run: |
           npm install -g style-dictionary
           style-dictionary build --config ./sd.config.js
+          git config --global user.name "HyebinHwang1"
+          git config --global user.email "medi.bin@gmail.com"
           git add .
           git commit -m "chore: update design tokens"
           git push origin design
