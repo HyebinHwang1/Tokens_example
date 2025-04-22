@@ -14,9 +14,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: design
-          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -45,4 +42,4 @@ jobs:
             - Updated spacing tokens
             - Updated typography tokens
           branch: design
-          base: main
+          base: ${{ github.head_ref }}
