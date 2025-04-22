@@ -99,7 +99,7 @@
       },
       "300": {
         "$type": "color",
-        "$value": "#ffadad"
+        "$value": "#000"
       }
     }
   },
