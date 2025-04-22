@@ -33,8 +33,13 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.PAT_TOKEN }}
-          commit-message: |
-            update tokens
-          title: Update AUTHORS
-          body: Credit new contributors by updating AUTHORS
-          branch: main
+          commit-message: "chore: update design tokens"
+          title: "design-tokens: Update design tokens"
+          body: |
+            This PR updates design tokens from Figma.
+            Changes include:
+            - Updated color tokens
+            - Updated spacing tokens
+            - Updated typography tokens
+          branch: design
+          base: main
