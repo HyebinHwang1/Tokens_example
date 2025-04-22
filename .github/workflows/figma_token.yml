@@ -28,6 +28,9 @@ jobs:
         run: |
           npm install -g style-dictionary
           style-dictionary build --config ./sd.config.js
+          git add .
+          git commit -m "chore: update design tokens"
+          git push origin design
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
