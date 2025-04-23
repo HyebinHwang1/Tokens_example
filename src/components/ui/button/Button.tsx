@@ -1,97 +1,65 @@
-import React from "react";
-import { Poppins } from "next/font/google";
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-const poppins = Poppins({
-  weight: ["400", "700"],
-  subsets: ["latin"],
+import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
+
+const baseStyle =
+  "cursor-pointer inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-md transition-colors focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:shrink-0 [&_svg]:w-4 [&_svg]:h-4";
+
+const buttonVariants = cva(baseStyle, {
+  variants: {
+    variant: {
+      primary:
+        "bg-primary-100 text-white [&:not(:disabled)]:hover:bg-primary-200",
+      secondary:
+        "bg-secondary-100 text-white [&:not(:disabled)]:hover:bg-secondary-200",
+      ghost:
+        "bg-transparent text-primary-100 [&:not(:disabled)]:hover:text-primary-200",
+      text: "bg-transparent text-primary-100 underline [&:not(:disabled)]:hover:text-primary-200",
+      skeleton: "bg-gray-300 animate-pulse text-transparent cursor-wait",
+    },
+    size: {
+      md: "w-32 h-10 text",
+      sm: "w-24 h-8 text-sm",
+      lg: "w-40 h-12 text-lg",
+    },
+  },
+  defaultVariants: {
+    variant: "primary",
+    size: "md",
+  },
 });
 
-export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "outline"
-  | "ghost"
-  | "link";
-export type ButtonSize = "sm" | "md" | "lg";
-export type ButtonState = "default" | "hover" | "active" | "disabled";
-
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  state?: ButtonState;
-  icon?: React.ReactNode;
-  children: React.ReactNode;
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  isLoading?: boolean;
 }
 
-const variantColors = {
-  primary: {
-    default: "bg-primary-100 text-white",
-    hover: "bg-primary-200 text-white",
-    active: "bg-primary-200 text-white",
-    disabled: "bg-grey-200 text-grey-400",
-  },
-  secondary: {
-    default: "bg-secondary-100 text-white",
-    hover: "bg-red-500 text-white",
-    active: "bg-red-500 text-white",
-    disabled: "bg-grey-200 text-grey-400",
-  },
-  outline: {
-    default: "bg-transparent border border-primary-100 text-primary-100",
-    hover: "bg-primary-100 text-white",
-    active: "bg-primary-200 text-white",
-    disabled: "bg-transparent border border-grey-300 text-grey-400",
-  },
-  ghost: {
-    default: "bg-transparent text-primary-100",
-    hover: "bg-grey-100 text-primary-200",
-    active: "bg-grey-200 text-primary-200",
-    disabled: "bg-transparent text-grey-400",
-  },
-  link: {
-    default: "bg-transparent text-primary-100 underline",
-    hover: "bg-transparent text-primary-200 underline",
-    active: "bg-transparent text-primary-200 underline",
-    disabled: "bg-transparent text-grey-400 underline",
-  },
-};
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    { className, variant, size, asChild = false, isLoading = false, ...props },
+    ref
+  ) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      >
+        {isLoading ? (
+          <Loader2 className="w-4 h-4 animate-spin" />
+        ) : (
+          props.children
+        )}
+      </Comp>
+    );
+  }
+);
+Button.displayName = "Button";
 
-const sizeStyles = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-6 py-3 text-base",
-  lg: "px-8 py-4 text-lg",
-};
-
-const Button: React.FC<ButtonProps> = ({
-  variant = "primary",
-  size = "md",
-  state = "default",
-  icon,
-  children,
-  className,
-  ...props
-}) => {
-  const baseStyles =
-    "inline-flex items-center justify-center gap-2 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-primary-100 focus:ring-offset-2";
-
-  const accessibilityProps = {
-    role: "button",
-    "aria-disabled": state === "disabled",
-    "aria-pressed": state === "active",
-  };
-
-  return (
-    <button
-      className={`${poppins.className} ${baseStyles} ${variantColors[variant][state]} ${sizeStyles[size]} ${className || ""}`}
-      disabled={state === "disabled"}
-      {...accessibilityProps}
-      {...props}
-    >
-      {icon && <span className="flex-shrink-0">{icon}</span>}
-      {children}
-    </button>
-  );
-};
-
-export default Button;
+export { Button, buttonVariants };
