@@ -89,7 +89,7 @@
     "primary": {
       "100": {
         "$type": "color",
-        "$value": "#70f8ff"
+        "$value": "#7aff83"
       },
       "200": {
         "$type": "color",
