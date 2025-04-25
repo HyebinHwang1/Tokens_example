@@ -1,4 +1,7 @@
 @theme {
+  --font-notoSansJP: var(--font-notoSansJP);
+  --font-pretendard: var(--font-pretendard);
+
   --color-grey-0: #ffffff;
   --color-grey-100: #f5f5f5;
   --color-grey-200: #e0e0e0;
