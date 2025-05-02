@@ -12,7 +12,15 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["primary", "secondary", "ghost", "text", "skeleton"],
+      options: [
+        "default",
+        "primary",
+        "secondary",
+        "black",
+        "skeleton",
+        "ghost",
+        "text",
+      ],
       description: "버튼의 스타일 변형",
     },
     size: {
@@ -38,13 +46,60 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
+export const Size: Story = {
+  render: () => (
+    <section className="gap-4">
+      <Button className="mr-4" size="sm">
+        Small Button
+      </Button>
+      <Button className="mr-4" size="md">
+        Medium Button
+      </Button>
+      <Button className="mr-4" size="lg">
+        Large Button
+      </Button>
+    </section>
+  ),
+};
+
 export const Basic: Story = {
   render: () => (
     <section className="flex gap-4">
+      <Button variant="default">Default</Button>
+      <Button variant="black">Black</Button>
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="text">Text</Button>
+    </section>
+  ),
+};
+
+export const Selected: Story = {
+  args: {
+    selected: true,
+  },
+
+  render: () => (
+    <section className="flex gap-4">
+      <Button variant="default" selected>
+        Default
+      </Button>
+      <Button variant="black" selected>
+        Black
+      </Button>
+      <Button variant="primary" selected>
+        Primary
+      </Button>
+      <Button variant="secondary" selected>
+        Secondary
+      </Button>
+      <Button variant="ghost" selected>
+        Ghost
+      </Button>
+      <Button variant="text" selected>
+        Text
+      </Button>
     </section>
   ),
 };
@@ -56,6 +111,12 @@ export const Disabled: Story = {
 
   render: () => (
     <section className="flex gap-4">
+      <Button variant="default" disabled>
+        Default
+      </Button>
+      <Button variant="black" disabled>
+        Black
+      </Button>
       <Button variant="primary" disabled>
         Primary
       </Button>
@@ -67,22 +128,6 @@ export const Disabled: Story = {
       </Button>
       <Button variant="text" disabled>
         Text
-      </Button>
-    </section>
-  ),
-};
-
-export const Size: Story = {
-  render: () => (
-    <section className="gap-4">
-      <Button className="mr-4" variant="primary" size="sm">
-        Small Button
-      </Button>
-      <Button className="mr-4" variant="primary" size="md">
-        Medium Button
-      </Button>
-      <Button className="mr-4" variant="primary" size="lg">
-        Large Button
       </Button>
     </section>
   ),

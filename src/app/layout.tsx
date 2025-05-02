@@ -1,3 +1,5 @@
+"use client";
+
 import { Noto_Sans_JP } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -9,7 +11,7 @@ const pretendard = localFont({
 });
 
 const notoSansJP = Noto_Sans_JP({
-  variable: "--font-notoSansJP",
+  variable: "--font-noto-sans-jp",
   subsets: ["latin"],
   display: "swap",
 });
@@ -22,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${pretendard.variable} ${notoSansJP.variable} antialiased`}
+        className={`${pretendard.className} ${notoSansJP.variable} antialiased`}
       >
         {children}
       </body>
