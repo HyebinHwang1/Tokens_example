@@ -42,13 +42,13 @@ export const English: Story = {
 export const Japanese: Story = {
   render: () => (
     <div className="flex-col gap-4 font-notoSansJP">
-      <p className="text-sm font-thin">アァイィウゥエェオォカガユュ</p>
+      <p className="text-md font-thin">アァイィウゥエェオォカガユュ</p>
       <p className="text-md font-light">アァイィウゥエェオォカガユュ</p>
-      <p className="text-lg font-normal">アァイィウゥエェオォカガユュ</p>
-      <p className="text-xl font-medium">アァイィウゥエェオォカガユュ</p>
-      <p className="text-2xl font-semibold">アァイィウゥエェオォカガユュ</p>
-      <p className="text-3xl font-bold">アァイィウゥエェオォカガユュ</p>
-      <p className="text-4xl font-extrabold">アァイィウゥエェオォカガユュ</p>
+      <p className="text-md">default アァイィウゥエェオォカガユュ</p>
+      <p className="text-md font-medium">アァイィウゥエェオォカガユュ</p>
+      <p className="text-md font-semibold">アァイィウゥエェオォカガユュ</p>
+      <p className="text-md font-bold">アァイィウゥエェオォカガユュ</p>
+      <p className="text-md font-extrabold">アァイィウゥエェオォカガユュ</p>
     </div>
   ),
 };

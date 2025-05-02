@@ -1,17 +1,33 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { useContext } from "react";
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+interface CardProps extends React.ComponentProps<"div"> {
+  theme?: "white" | "black";
+}
+
+interface CardContextType {
+  theme: "white" | "black";
+}
+
+const CardContext = React.createContext<CardContextType>({ theme: "white" });
+
+function Card({ className, theme = "white", ...props }: CardProps) {
   return (
-    <div
-      data-slot="card"
-      className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border border-gray-300 py-6 shadow-sm",
-        className
-      )}
-      {...props}
-    />
+    <CardContext.Provider value={{ theme }}>
+      <div
+        data-slot="card"
+        className={cn(
+          "flex flex-col rounded-xl border py-6 shadow-sm w-48",
+          theme === "white"
+            ? "bg-white text-gray-900 border-gray-300"
+            : "bg-gray-900 text-white border-gray-700",
+          className
+        )}
+        {...props}
+      />
+    </CardContext.Provider>
   );
 }
 
@@ -20,7 +36,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-header"
       className={cn(
-        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start pb-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
         className
       )}
       {...props}
@@ -29,20 +45,31 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+  const { theme } = useContext(CardContext);
+
   return (
     <div
       data-slot="card-title"
-      className={cn("leading-none font-semibold", className)}
+      className={cn(
+        "leading-none font-semibold",
+        theme === "white" ? "text-gray-900" : "text-white",
+        className
+      )}
       {...props}
     />
   );
 }
 
 function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+  const { theme } = React.useContext(CardContext);
   return (
     <div
       data-slot="card-description"
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn(
+        "text-sm",
+        theme === "white" ? "text-gray-600" : "text-gray-300",
+        className
+      )}
       {...props}
     />
   );
