@@ -17,6 +17,7 @@ When creating a new component, follow this structure:
 5. Use cva for styling variants
 6. Implement TypeScript interfaces
 7. Add Storybook documentation
+8. refer to src/components/ui/button/Button.tsx, src/components/ui/button/Button.stories.tsx
 ```
 
 ## 2. Styling Instructions
