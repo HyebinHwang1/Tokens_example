@@ -31,6 +31,7 @@ export const Basic: Story = {
       <Badge intent="info">Info</Badge>
       <Badge intent="success">Success</Badge>
       <Badge intent="danger">Danger</Badge>
+      <Badge intent="warning">Warning</Badge>
     </section>
   ),
 };
@@ -46,6 +47,9 @@ export const Outline: Story = {
       </Badge>
       <Badge intent="danger" weight="outline">
         Danger
+      </Badge>
+      <Badge intent="warning" weight="outline">
+        Warning
       </Badge>
     </section>
   ),

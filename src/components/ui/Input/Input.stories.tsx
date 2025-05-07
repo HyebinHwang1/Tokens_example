@@ -1,92 +1,72 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Input, InputProps } from "./Input";
-import { Search } from "lucide-react";
+import { Input } from "./Input";
+import { Mail } from "lucide-react";
 
-const meta: Meta<InputProps> = {
+const meta: Meta<typeof Input> = {
   title: "UI/Input",
   component: Input,
+  parameters: {
+    layout: "centered",
+  },
   tags: ["autodocs"],
   argTypes: {
-    variant: {
-      control: "select",
-      options: ["default", "focus", "error", "disabled", "icon"],
-    },
-    error: { control: "text" },
-    feedback: { control: "text" },
+    label: { control: "text", description: "라벨 텍스트" },
+    id: { control: "text", description: "input id" },
+    error: { control: "boolean", description: "에러 상태 여부" },
+    feedback: { control: "text", description: "에러 메시지" },
     icon: { control: false },
-    label: { control: "text" },
-    id: { control: "text" },
-    disabled: { control: "boolean" },
-  },
-  parameters: {
-    docs: {
-      description: {
-        component:
-          "Figma 기반 Input 컴포넌트. variant, validation, 접근성, 아이콘 등 다양한 상태 지원.",
-      },
-    },
+    type: { control: "text", description: "input type" },
+    placeholder: { control: "text", description: "placeholder 텍스트" },
+    disabled: { control: "boolean", description: "비활성화 여부" },
   },
 };
 export default meta;
-type Story = StoryObj<InputProps>;
+type Story = StoryObj<typeof Input>;
 
-export const Default: Story = {
-  args: {
-    label: "이름",
-    id: "input-default",
-    placeholder: "이름을 입력하세요",
-    variant: "default",
-  },
-};
-
-export const Focus: Story = {
-  args: {
-    label: "이름",
-    id: "input-focus",
-    placeholder: "포커스 상태",
-    variant: "focus",
-  },
-  parameters: {
-    pseudo: { focus: true },
-  },
-};
-
-export const Error: Story = {
-  args: {
-    label: "이메일",
-    id: "input-error",
-    placeholder: "이메일을 입력하세요",
-    error: "이메일 형식이 올바르지 않습니다.",
-    variant: "error",
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    label: "비밀번호",
-    id: "input-disabled",
-    placeholder: "비밀번호를 입력하세요",
-    disabled: true,
-    variant: "disabled",
-  },
+export const Basic: Story = {
+  render: () => (
+    <section className="flex flex-col gap-6 w-80">
+      <Input label="이름" id="input-basic" placeholder="이름을 입력하세요" />
+    </section>
+  ),
 };
 
 export const WithIcon: Story = {
-  args: {
-    label: "검색",
-    id: "input-icon",
-    placeholder: "검색어를 입력하세요",
-    icon: <Search size={18} />,
-    variant: "icon",
-  },
+  render: () => (
+    <section className="flex flex-col gap-6 w-80">
+      <Input
+        label="이메일"
+        id="input-icon"
+        placeholder="이메일을 입력하세요"
+        icon={<Mail />}
+      />
+    </section>
+  ),
 };
 
-export const WithFeedback: Story = {
-  args: {
-    label: "닉네임",
-    id: "input-feedback",
-    placeholder: "닉네임을 입력하세요",
-    feedback: "사용 가능한 닉네임입니다.",
-    variant: "default",
-  },
+export const Error: Story = {
+  render: () => (
+    <section className="flex flex-col gap-6 w-80">
+      <Input
+        label="이메일"
+        id="input-error"
+        placeholder="이메일을 입력하세요"
+        error
+        feedback="올바른 이메일을 입력해주세요."
+      />
+    </section>
+  ),
+};
+
+export const Disabled: Story = {
+  render: () => (
+    <section className="flex flex-col gap-6 w-80">
+      <Input
+        label="이름"
+        id="input-disabled"
+        placeholder="이름을 입력하세요"
+        disabled
+      />
+    </section>
+  ),
 };

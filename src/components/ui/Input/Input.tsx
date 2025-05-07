@@ -1,69 +1,35 @@
-import React, { forwardRef, InputHTMLAttributes } from "react";
-import { cva, VariantProps } from "class-variance-authority";
-import clsx from "clsx";
+import * as React from "react";
 
-/**
- * Input 컴포넌트 Props
- * @prop variant - input 상태 (default, focus, error, disabled, icon)
- * @prop error - 에러 메시지 (있으면 error 스타일 적용)
- * @prop feedback - 인라인 피드백 메시지
- * @prop icon - input 내부에 표시할 아이콘 (ReactNode)
- * @prop label - 접근성 및 시각적 라벨
- * @prop id - input과 label 연결용 id
- * @prop disabled - 비활성화 여부
- * @prop ...rest - 기타 input 속성
- */
-export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size">,
+import { cn } from "@/lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
+
+const inputDefaultStyle =
+  "flex h-9 w-full rounded-md border border-gray-300 bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-800 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:ring-gray-400 disabled:text-gray-400 md:text-sm";
+
+interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof inputVariants> {
-  /** input 상태 variant */
-  variant?: "default" | "focus" | "error" | "disabled" | "icon";
-  /** 에러 메시지 */
-  error?: string;
-  /** 인라인 피드백 메시지 */
-  feedback?: string;
-  /** input 내부 아이콘 */
-  icon?: React.ReactNode;
-  /** 시각적/접근성 라벨 */
-  label: string;
+  label: React.ReactNode;
   /** input과 연결할 id */
   id: string;
+  error?: boolean;
+  feedback?: string;
+  icon?: React.ReactNode;
 }
 
-const inputVariants = cva(
-  "block w-full rounded-md border px-3 py-2 text-base transition-colors focus:outline-none",
-  {
-    variants: {
-      variant: {
-        default: "border-gray-300 bg-white text-gray-900",
-        focus: "border-primary-500 ring-2 ring-primary-100 bg-white",
-        error: "border-error-500 bg-white text-error-700",
-        disabled: "border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed",
-        icon: "", // 아이콘 포함 시 추가 스타일 필요
-      },
+const inputVariants = cva(inputDefaultStyle, {
+  variants: {
+    error: {
+      true: "border border-danger-500 bg-white text-danger-500 focus-visible:ring-danger-500",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    error: false,
+  },
+});
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      variant = "default",
-      error,
-      feedback,
-      icon,
-      label,
-      id,
-      disabled,
-      className,
-      ...rest
-    },
-    ref
-  ) => {
-    const showError = Boolean(error);
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, label, id, error, feedback, icon, ...props }, ref) => {
     return (
       <div className="w-full">
         <label
@@ -72,61 +38,37 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         >
           {label}
         </label>
-        <div
-          className={clsx("relative flex items-center", {
-            "opacity-50": disabled,
-          })}
-        >
+        <div className="relative">
+          <input
+            type={type}
+            className={cn(
+              inputDefaultStyle,
+              inputVariants({ error }),
+              className
+            )}
+            aria-invalid={error}
+            ref={ref}
+            {...props}
+          />
           {icon && (
-            <span className="absolute left-3 text-gray-400 pointer-events-none">
+            <span className="absolute right-4 text-gray-400 pointer-events-none top-1/2 -translate-y-1/2">
               {icon}
             </span>
           )}
-          <input
-            id={id}
-            ref={ref}
-            type="text"
-            aria-invalid={showError}
-            aria-describedby={
-              showError
-                ? `${id}-error`
-                : feedback
-                  ? `${id}-feedback`
-                  : undefined
-            }
-            disabled={disabled}
-            className={clsx(
-              inputVariants({
-                variant: showError
-                  ? "error"
-                  : disabled
-                    ? "disabled"
-                    : icon
-                      ? "icon"
-                      : variant,
-              }),
-              icon ? "pl-10" : "",
-              className
-            )}
-            {...rest}
-          />
         </div>
-        {showError ? (
+        {error && (
           <p
+            className="mt-1 text-sm text-red-500"
             id={`${id}-error`}
-            className="mt-1 text-xs text-error-600"
             role="alert"
           >
-            {error}
-          </p>
-        ) : feedback ? (
-          <p id={`${id}-feedback`} className="mt-1 text-xs text-gray-500">
             {feedback}
           </p>
-        ) : null}
+        )}
       </div>
     );
   }
 );
-
 Input.displayName = "Input";
+
+export { Input, inputVariants, inputDefaultStyle };
