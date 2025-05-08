@@ -6,7 +6,7 @@ import heartIcon from "@/assets/images/heart_icon.svg";
 import chevronRightIcon from "@/assets/images/chevron_right.svg";
 import ProductCardImg from "@/assets/images/product_example.png";
 import Link from "next/link";
-import { ChevronRight, Heart, Star } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import { Badge } from "../badge/Badge";
 
 export function CardRealExample() {
