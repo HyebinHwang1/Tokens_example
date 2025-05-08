@@ -71,7 +71,7 @@ export function ProductCardExample() {
           <span>¥9,760</span>
         </div>
         <div className="flex flex-wrap gap-1 text-xs pb-1">
-          <span className="rounded-xs px-1 border border-gray-500 text-gray-900 text-[10px] mr-0">
+          <span className="rounded-xs px-1 border bg-secondary-500 border-secondary-500 text-gray-0 text-[10px] mr-0">
             特急発送
           </span>
           <span className="rounded-xs px-1 border border-gray-500 text-gray-900 text-[10px]">

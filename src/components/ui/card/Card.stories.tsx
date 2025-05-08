@@ -7,7 +7,6 @@ import {
   CardContent,
   CardFooter,
 } from "./Card";
-import { CardStyle, CardThumbnail } from "./CardExample";
 import ExampleImage from "@/assets/images/example.png";
 import Image from "next/image";
 
@@ -70,23 +69,4 @@ export const WithThumbnail: Story = {
       </CardContent>
     </Card>
   ),
-};
-
-export const CardStyleExample: Story = {
-  args: {
-    theme: "white",
-  },
-  render: (args) => {
-    return (
-      <div
-        className={`p-10 ${args.theme === "white" ? "bg-white" : "bg-black"}`}
-      >
-        <CardStyle {...args} />
-      </div>
-    );
-  },
-};
-
-export const CardThumbnailExample: Story = {
-  render: () => <CardThumbnail />,
 };
