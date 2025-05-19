@@ -13,7 +13,7 @@ interface TooltipContentProps {
 }
 
 const meta: Meta<TooltipContentProps> = {
-  title: "UI/Tooltip",
+  title: "COMPONENTS/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],
   argTypes: {

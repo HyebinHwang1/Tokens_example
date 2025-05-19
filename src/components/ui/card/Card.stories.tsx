@@ -11,7 +11,7 @@ import ExampleImage from "@/assets/images/example.png";
 import Image from "next/image";
 
 const meta: Meta<typeof Card> = {
-  title: "UI/Card",
+  title: "MODULES/Card",
   component: Card,
   parameters: {
     layout: "centered",

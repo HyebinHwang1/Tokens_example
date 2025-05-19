@@ -4,7 +4,7 @@ import { CardThumbnail } from "./CardExample";
 import { CardStyle } from "./CardExample";
 
 const meta: Meta = {
-  title: "UI/Example",
+  title: "MODULES/Example",
 };
 
 export default meta;

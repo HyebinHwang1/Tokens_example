@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Search from "./search";
 
 const meta: Meta<typeof Search> = {
-  title: "UI/Search",
+  title: "MODULES/Search",
   component: Search,
   parameters: {
     layout: "centered",

@@ -5,7 +5,7 @@ import BrandExample from "@/assets/images/brand_example.svg";
 import Image from "next/image";
 
 const meta: Meta<typeof Button> = {
-  title: "UI/Button",
+  title: "COMPONENTS/Button",
   component: Button,
   parameters: {
     layout: "centered",
