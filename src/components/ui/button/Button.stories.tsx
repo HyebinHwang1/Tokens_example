@@ -38,10 +38,6 @@ const meta: Meta<typeof Button> = {
       control: "boolean",
       description: "Radix UI Slot 컴포넌트로 렌더링 여부",
     },
-    isLoading: {
-      control: "boolean",
-      description: "로딩 상태 여부",
-    },
   },
 };
 
@@ -148,22 +144,6 @@ export const WithIcon: Story = {
       </Button>
       <Button variant="ghost">
         <Plus />
-        Ghost
-      </Button>
-    </section>
-  ),
-};
-
-export const Loading: Story = {
-  render: () => (
-    <section className="flex gap-4">
-      <Button variant="primary" isLoading>
-        Primary
-      </Button>
-      <Button variant="secondary" isLoading>
-        Secondary
-      </Button>
-      <Button variant="ghost" isLoading>
         Ghost
       </Button>
     </section>
