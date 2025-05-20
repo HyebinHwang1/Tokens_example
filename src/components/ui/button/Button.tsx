@@ -16,24 +16,31 @@ const buttonVariants = cva(baseStyle, {
         "bg-secondary-500 text-white [&:not(:disabled)]:hover:bg-secondary-300",
       ghost:
         "bg-transparent text-gray-900 [&:not(:disabled)]:hover:text-gray-700",
-      default:
+      light:
         "bg-white text-gray-900 [&:not(:disabled)]:hover:bg-gray-200 border border-gray-300",
-      black: "bg-gray-900 text-white [&:not(:disabled)]:hover:bg-gray-700",
+      dark: "bg-gray-900 text-white [&:not(:disabled)]:hover:bg-gray-700",
       text: "bg-transparent text-gray-900 underline [&:not(:disabled)]:hover:text-gray-700",
     },
     size: {
-      md: "w-32 h-10 text",
-      sm: "w-24 h-8 text-sm",
-      lg: "w-40 h-12 text-lg",
+      xs: "text-2xs px-2 h-5",
+      sm: "text-2xs px-2 h-6",
+      md: "text-sm px-4 h-9",
+      lg: "text-sm px-8 h-[44px]",
+      xl: "text-sm px-8 h-[60px]",
+      full: "w-full block text-base h-[64px]",
     },
     selected: {
+      true: "",
+      false: "",
+    },
+    capsule: {
       true: "",
       false: "",
     },
   },
   compoundVariants: [
     {
-      variant: "default",
+      variant: "light",
       selected: true,
       className: "bg-black opacity-60 text-gray-0",
     },
@@ -53,7 +60,7 @@ const buttonVariants = cva(baseStyle, {
       className: "text-black",
     },
     {
-      variant: "black",
+      variant: "dark",
       selected: true,
       className: "bg-black",
     },
@@ -61,11 +68,37 @@ const buttonVariants = cva(baseStyle, {
       variant: "text",
       selected: true,
     },
+    {
+      variant: "text",
+      size: "xs",
+      className: "text-xs",
+    },
+    {
+      variant: "text",
+      size: "sm",
+      className: "text-sm",
+    },
+    {
+      variant: "text",
+      size: "md",
+      className: "text-md",
+    },
+    {
+      variant: "text",
+      size: "lg",
+      className: "text-lg",
+    },
+    {
+      variant: "text",
+      size: "xl",
+      className: "text-xl",
+    },
   ],
   defaultVariants: {
-    variant: "default",
+    variant: "light",
     size: "md",
     selected: false,
+    capsule: false,
   },
 });
 
@@ -75,15 +108,7 @@ export interface ButtonProps
   asChild?: boolean;
   selected?: boolean;
 }
-/**
- * 버튼 컴포넌트
- *
- * ```tsx dark
- * <Button
- *   variant="primary"
- * />
- * ```
- */
+
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     { className, variant, size, asChild = false, selected = false, ...props },

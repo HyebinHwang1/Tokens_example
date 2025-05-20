@@ -4,71 +4,75 @@ import { ArrowRight, HomeIcon, Plus } from "lucide-react";
 import BrandExample from "@/assets/images/brand_example.svg";
 import Image from "next/image";
 
-const meta: Meta<typeof Button> = {
+export default {
   title: "COMPONENTS/Button",
   component: Button,
   parameters: {
     layout: "centered",
   },
+  docs: {
+    source: {
+      type: "code",
+      language: "tsx",
+    },
+  },
   tags: ["autodocs"],
   argTypes: {
     variant: {
       control: "select",
-      options: [
-        "default",
-        "primary",
-        "secondary",
-        "black",
-        "skeleton",
-        "ghost",
-        "text",
-      ],
-      description: "버튼의 스타일 변형",
+      options: ["light", "primary", "secondary", "dark", "text", "ghost"],
     },
     size: {
       control: "select",
-      options: ["sm", "md", "lg"],
-      description: "버튼의 크기",
+      options: ["xs", "sm", "md", "lg", "xl", "full"],
+    },
+    capsule: {
+      control: "boolean",
     },
     disabled: {
       control: "boolean",
-      description: "버튼 비활성화 여부",
     },
     asChild: {
-      control: "boolean",
-      description: "Radix UI Slot 컴포넌트로 렌더링 여부",
+      control: {
+        disable: true,
+      },
     },
   },
-};
+} as Meta<typeof Button>;
 
-export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Basic: Story = {
-  render: () => (
-    <section className="flex gap-4">
-      <Button variant="default">Default</Button>
-      <Button variant="black">Black</Button>
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="text">Text</Button>
-    </section>
-  ),
+  args: {
+    children: "Button",
+    variant: "light",
+    size: "md",
+    capsule: false,
+    disabled: false,
+  },
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: "shown",
+      },
+    },
+  },
+  render: (args) => <Button {...args} />,
 };
 
-export const Size: Story = {
+export const Variant: Story = {
+  parameters: {
+    controls: {
+      disabled: true,
+    },
+  },
   render: () => (
-    <section className="gap-4">
-      <Button className="mr-4" size="sm">
-        Small Button
-      </Button>
-      <Button className="mr-4" size="md">
-        Medium Button
-      </Button>
-      <Button className="mr-4" size="lg">
-        Large Button
-      </Button>
+    <section className="flex gap-4">
+      <Button>Light(Default)</Button>
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="dark">Dark</Button>
+      <Button variant="text">Text</Button>
     </section>
   ),
 };
@@ -77,14 +81,15 @@ export const Selected: Story = {
   args: {
     selected: true,
   },
-
+  parameters: {
+    controls: {
+      disabled: true,
+    },
+  },
   render: () => (
     <section className="flex gap-4">
-      <Button variant="default" selected>
-        Default
-      </Button>
-      <Button variant="black" selected>
-        Black
+      <Button variant="light" selected>
+        Light(Default)
       </Button>
       <Button variant="primary" selected>
         Primary
@@ -92,8 +97,8 @@ export const Selected: Story = {
       <Button variant="secondary" selected>
         Secondary
       </Button>
-      <Button variant="ghost" selected>
-        Ghost
+      <Button variant="dark" selected>
+        Dark
       </Button>
       <Button variant="text" selected>
         Text
@@ -102,18 +107,41 @@ export const Selected: Story = {
   ),
 };
 
+export const Size: Story = {
+  parameters: {
+    controls: {
+      disabled: true,
+    },
+  },
+  render: () => (
+    <section>
+      <div className="flex gap-4 mb-4">
+        <Button size="xs">XSmall Button</Button>
+        <Button size="sm">Small Button</Button>
+        <Button size="md">Medium Button</Button>
+        <Button size="lg">Large Button</Button>
+        <Button size="xl">XLarge Button</Button>
+      </div>
+      <div>
+        <Button size="full">Full Button</Button>
+      </div>
+    </section>
+  ),
+};
+
 export const Disabled: Story = {
   args: {
     disabled: true,
   },
-
+  parameters: {
+    controls: {
+      disabled: true,
+    },
+  },
   render: () => (
     <section className="flex gap-4">
-      <Button variant="default" disabled>
-        Default
-      </Button>
-      <Button variant="black" disabled>
-        Black
+      <Button variant="light" disabled>
+        Light(default)
       </Button>
       <Button variant="primary" disabled>
         Primary
@@ -121,8 +149,8 @@ export const Disabled: Story = {
       <Button variant="secondary" disabled>
         Secondary
       </Button>
-      <Button variant="ghost" disabled>
-        Ghost
+      <Button variant="dark" disabled>
+        Dark
       </Button>
       <Button variant="text" disabled>
         Text
@@ -190,7 +218,7 @@ export const Example: Story = {
 
       <div className="flex flex-col items-center">
         <h2 className="mb-2 flex gap-1">Capsule button(black button)</h2>
-        <Button variant="black" className="rounded-full">
+        <Button variant="dark" className="rounded-full">
           button name
         </Button>
       </div>
