@@ -48,6 +48,19 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
+export const Basic: Story = {
+  render: () => (
+    <section className="flex gap-4">
+      <Button variant="default">Default</Button>
+      <Button variant="black">Black</Button>
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="text">Text</Button>
+    </section>
+  ),
+};
+
 export const Size: Story = {
   render: () => (
     <section className="gap-4">
@@ -60,19 +73,6 @@ export const Size: Story = {
       <Button className="mr-4" size="lg">
         Large Button
       </Button>
-    </section>
-  ),
-};
-
-export const Basic: Story = {
-  render: () => (
-    <section className="flex gap-4">
-      <Button variant="default">Default</Button>
-      <Button variant="black">Black</Button>
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="text">Text</Button>
     </section>
   ),
 };
@@ -149,22 +149,6 @@ export const WithIcon: Story = {
       <Button variant="ghost">
         <Plus />
         Ghost
-      </Button>
-    </section>
-  ),
-};
-
-export const Skeleton: Story = {
-  render: () => (
-    <section>
-      <Button className="mr-4" size="sm" variant="skeleton">
-        Skeleton
-      </Button>
-      <Button className="mr-4" size="md" variant="skeleton">
-        Skeleton
-      </Button>
-      <Button className="mr-4" size="lg" variant="skeleton">
-        Skeleton
       </Button>
     </section>
   ),

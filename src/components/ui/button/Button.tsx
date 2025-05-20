@@ -19,7 +19,6 @@ const buttonVariants = cva(baseStyle, {
         "bg-transparent text-gray-900 [&:not(:disabled)]:hover:text-gray-700",
       default:
         "bg-white text-gray-900 [&:not(:disabled)]:hover:bg-gray-200 border border-gray-300",
-      skeleton: "bg-gray-300 animate-pulse text-transparent cursor-wait",
       black: "bg-gray-900 text-white [&:not(:disabled)]:hover:bg-gray-700",
       text: "bg-transparent text-gray-900 underline [&:not(:disabled)]:hover:text-gray-700",
     },
@@ -78,7 +77,15 @@ export interface ButtonProps
   isLoading?: boolean;
   selected?: boolean;
 }
-
+/**
+ * 버튼 컴포넌트
+ *
+ * ```tsx dark
+ * <Button
+ *   variant="primary"
+ * />
+ * ```
+ */
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
