@@ -10,16 +10,12 @@ const baseStyle =
 const buttonVariants = cva(baseStyle, {
   variants: {
     variant: {
-      primary:
-        "bg-primary-500 text-white [&:not(:disabled)]:hover:bg-primary-300",
-      secondary:
-        "bg-secondary-500 text-white [&:not(:disabled)]:hover:bg-secondary-300",
-      ghost:
-        "bg-transparent text-gray-900 [&:not(:disabled)]:hover:text-gray-700",
-      light:
-        "bg-white text-gray-900 [&:not(:disabled)]:hover:bg-gray-200 border border-gray-300",
-      dark: "bg-gray-900 text-white [&:not(:disabled)]:hover:bg-gray-700",
-      text: "bg-transparent text-gray-900 underline [&:not(:disabled)]:hover:text-gray-700",
+      primary: "bg-primary-500 text-white",
+      secondary: "bg-secondary-500 text-white",
+      ghost: "bg-transparent text-gray-900",
+      light: "bg-white text-gray-900 border border-gray-300",
+      dark: "bg-gray-900 text-white",
+      text: "bg-transparent text-gray-900 underline",
     },
     size: {
       xs: "text-2xs px-2 h-5",
@@ -34,11 +30,36 @@ const buttonVariants = cva(baseStyle, {
       false: "",
     },
     capsule: {
-      true: "",
+      true: "rounded-full",
       false: "",
     },
   },
   compoundVariants: [
+    {
+      variant: "light",
+      selected: false,
+      className: "[&:not(:disabled)]:hover:bg-gray-200",
+    },
+    {
+      variant: "dark",
+      selected: false,
+      className: "[&:not(:disabled)]:hover:bg-gray-700",
+    },
+    {
+      variant: "secondary",
+      selected: false,
+      className: "[&:not(:disabled)]:hover:bg-secondary-300",
+    },
+    {
+      variant: "primary",
+      selected: false,
+      className: "[&:not(:disabled)]:hover:bg-primary-300",
+    },
+    {
+      variant: "text",
+      selected: false,
+      className: "[&:not(:disabled)]:hover:text-gray-700",
+    },
     {
       variant: "light",
       selected: true,
@@ -66,10 +87,6 @@ const buttonVariants = cva(baseStyle, {
     },
     {
       variant: "text",
-      selected: true,
-    },
-    {
-      variant: "text",
       size: "xs",
       className: "text-xs",
     },
@@ -94,30 +111,33 @@ const buttonVariants = cva(baseStyle, {
       className: "text-xl",
     },
   ],
-  defaultVariants: {
-    variant: "light",
-    size: "md",
-    selected: false,
-    capsule: false,
-  },
 });
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  selected?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, size, asChild = false, selected = false, ...props },
+    {
+      className,
+      variant = "light",
+      size = "md",
+      asChild = false,
+      selected = false,
+      capsule = false,
+      ...props
+    },
     ref
   ) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, selected, className }))}
+        className={cn(
+          buttonVariants({ variant, size, selected, capsule, className })
+        )}
         ref={ref}
         {...props}
       />
