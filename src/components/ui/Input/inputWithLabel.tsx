@@ -2,7 +2,7 @@ import * as React from "react";
 import { cva, VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
-import { Input } from "./Input";
+import { Input } from ".";
 
 interface InputWithLabelProps
   extends React.InputHTMLAttributes<HTMLInputElement>,

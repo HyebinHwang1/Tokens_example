@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Input, InputWithLabel } from "./Input";
+import { Input, InputWithLabel } from ".";
 import { EyeIcon, Search } from "lucide-react";
 
 export default {
