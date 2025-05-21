@@ -21,8 +21,8 @@ const buttonVariants = cva(baseStyle, {
       xs: "text-2xs px-2 h-5",
       sm: "text-2xs px-2 h-6",
       md: "text-sm px-4 h-9",
-      lg: "text-sm px-8 h-[44px]",
-      xl: "text-sm px-8 h-[60px]",
+      lg: "text-sm px-5 h-[44px]",
+      xl: "text-sm px-5 h-[60px]",
       full: "w-full block text-base h-[64px]",
     },
     selected: {
