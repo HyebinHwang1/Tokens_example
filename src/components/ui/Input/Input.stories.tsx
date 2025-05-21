@@ -1,72 +1,109 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Input } from "./Input";
-import { Mail } from "lucide-react";
+import { Input, InputWithLabel } from "./Input";
+import { EyeIcon, Search } from "lucide-react";
 
-const meta: Meta<typeof Input> = {
+export default {
   title: "COMPONENTS/Input",
   component: Input,
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
-  argTypes: {
-    label: { control: "text", description: "라벨 텍스트" },
-    id: { control: "text", description: "input id" },
-    error: { control: "boolean", description: "에러 상태 여부" },
-    feedback: { control: "text", description: "에러 메시지" },
-    icon: { control: false },
-    type: { control: "text", description: "input type" },
-    placeholder: { control: "text", description: "placeholder 텍스트" },
-    disabled: { control: "boolean", description: "비활성화 여부" },
+  docs: {
+    source: {
+      type: "code",
+      language: "tsx",
+    },
   },
-};
-export default meta;
+  tags: ["autodocs"],
+} as Meta<typeof Input>;
+
+type InputWithLabelStory = StoryObj<typeof InputWithLabel>;
 type Story = StoryObj<typeof Input>;
 
 export const Basic: Story = {
-  render: () => (
-    <section className="flex flex-col gap-6 w-80">
-      <Input label="이름" id="input-basic" placeholder="이름을 입력하세요" />
-    </section>
-  ),
+  argTypes: {
+    placeholder: {
+      control: "text",
+      description: "입력 필드의 placeholder",
+    },
+    error: {
+      control: "boolean",
+      description: "에러 상태",
+    },
+    disabled: {
+      control: "boolean",
+      description: "비활성화 상태",
+    },
+  },
+  args: {
+    placeholder: "입력해주세요",
+    error: false,
+    disabled: false,
+  },
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: "shown",
+      },
+    },
+    controls: {
+      exclude: ["leftIcon", "rightIcon"],
+    },
+  },
+  render: (args) => <Input {...args} />,
 };
 
-export const WithIcon: Story = {
-  render: () => (
-    <section className="flex flex-col gap-6 w-80">
-      <Input
-        label="이메일"
-        id="input-icon"
-        placeholder="이메일을 입력하세요"
-        icon={<Mail />}
-      />
-    </section>
-  ),
+export const WithIcons: Story = {
+  argTypes: {
+    placeholder: {
+      control: "text",
+      description: "입력 필드의 placeholder",
+    },
+    error: {
+      control: "boolean",
+      description: "에러 상태",
+    },
+    disabled: {
+      control: "boolean",
+      description: "비활성화 상태",
+    },
+  },
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: "shown",
+      },
+    },
+    controls: {
+      exclude: ["leftIcon", "rightIcon"],
+    },
+  },
+  args: {
+    placeholder: "검색어를 입력하세요",
+    leftIcon: <Search />,
+    rightIcon: <EyeIcon />,
+    error: false,
+    disabled: false,
+  },
+  render: (args) => <Input {...args} />,
 };
 
-export const Error: Story = {
-  render: () => (
-    <section className="flex flex-col gap-6 w-80">
-      <Input
-        label="이메일"
-        id="input-error"
-        placeholder="이메일을 입력하세요"
-        error
-        feedback="올바른 이메일을 입력해주세요."
-      />
-    </section>
-  ),
-};
-
-export const Disabled: Story = {
-  render: () => (
-    <section className="flex flex-col gap-6 w-80">
-      <Input
-        label="이름"
-        id="input-disabled"
-        placeholder="이름을 입력하세요"
-        disabled
-      />
-    </section>
-  ),
+export const WithLabels: InputWithLabelStory = {
+  args: {
+    label: "이름",
+    placeholder: "이름을 입력하세요",
+    error: false,
+    feedback: "이름을 입력하세요.",
+  },
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: "shown",
+      },
+    },
+    controls: {
+      exclude: ["leftIcon", "rightIcon"],
+    },
+  },
+  render: (args) => <InputWithLabel {...args} id="name" />,
 };
