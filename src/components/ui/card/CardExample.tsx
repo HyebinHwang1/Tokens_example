@@ -13,7 +13,7 @@ import ImageExample4 from "@/assets/images/example_image_4.png";
 import HangerIcon from "@/assets/images/hanger.svg";
 import { ChevronRight, HeartIcon, StarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button/Button";
-import { Badge } from "@/components/ui/badge/Badge";
+import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 
 export function CardStyle({ theme = "white" }: { theme?: "white" | "black" }) {
