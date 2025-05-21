@@ -6,6 +6,7 @@ import { Circle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+// TODO: 디자인 시스템에 라벨 추가되면 UI 추가 필요
 const RadioGroup = React.forwardRef<
   React.ComponentRef<typeof RadioGroupPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>

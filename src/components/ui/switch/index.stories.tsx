@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Switch } from "./Switch";
-import { useState } from "react";
+import { Switch } from ".";
 
 const meta: Meta<typeof Switch> = {
   title: "COMPONENTS/Switch",
@@ -22,7 +21,18 @@ export default meta;
 type Story = StoryObj<typeof Switch>;
 
 export const Basic: Story = {
-  args: {},
+  args: {
+    checked: false,
+    disabled: false,
+  },
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: "shown",
+      },
+    },
+  },
+  render: (args) => <Switch {...args} />,
 };
 
 export const Disabled: Story = {
@@ -40,16 +50,13 @@ export const Disabled: Story = {
   ),
 };
 
-function WithLabelExample() {
-  const [checked, setChecked] = useState(false);
-  return (
-    <label className="flex items-center gap-2 cursor-pointer">
-      <Switch checked={checked} onCheckedChange={setChecked} />
-      <span>알림 받기</span>
-    </label>
-  );
-}
-
 export const WithLabel: Story = {
-  render: () => <WithLabelExample />,
+  render: (args) => {
+    return (
+      <label className="flex items-center gap-2 cursor-pointer">
+        <Switch {...args} />
+        <span>알림 받기</span>
+      </label>
+    );
+  },
 };
