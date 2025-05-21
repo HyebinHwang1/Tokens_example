@@ -1,40 +1,43 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { inputDefaultStyle } from "./Input";
-import { Search as SearchIcon, X } from "lucide-react";
 import { useState } from "react";
+import { Search as SearchIcon, X } from "lucide-react";
+
+import { Input } from "@/components/ui/Input";
 
 interface SearchProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+  extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    "onChange" | "placeholder"
+  > {
   defaultValue?: string;
   onChange?: (value: string) => void;
   onClickDelete?: () => void;
+  placeholder?: string;
 }
 export default function Search({
-  defaultValue,
   onChange,
   onClickDelete,
+  defaultValue = "",
+  placeholder = "何をお探しですか?",
   ...props
 }: SearchProps) {
   const [value, setValue] = useState(defaultValue);
 
   return (
     <div className="w-full relative">
-      <input
+      <Input
         type="text"
-        placeholder="검색어를 입력하세요"
-        className={cn(
-          inputDefaultStyle,
-          "pr-10 pl-4 rounded-full bg-gray-100 focus-visible:ring-0 focus-visible:ring-offset-0"
-        )}
-        value={value}
+        placeholder={placeholder}
         onChange={(e) => {
-          setValue(e.target.value);
           onChange?.(e.target.value);
+          setValue(e.target.value);
         }}
+        value={value}
+        className="pr-14 pl-4 text-xs rounded-full bg-gray-100 focus-visible:ring-0 focus-visible:ring-offset-0"
         {...props}
       />
+
       {value && (
         <button
           className="absolute right-8 top-1/2 -translate-y-1/2 rounded-full bg-gray-400 p-1 cursor-pointer"
