@@ -7,29 +7,29 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const tooltipVariants = cva(
-  "relative z-50 w-fit rounded-[5px] px-4 py-3 text-xs text-balance shadow-[0px_2px_7px_0px_rgba(0,0,0,0.12)]",
+  "relative z-50 w-fit rounded-[5px] px-2 py-1 text-xs text-balance shadow-[0px_2px_7px_0px_rgba(0,0,0,0.12)]",
   {
     variants: {
       theme: {
-        light: "bg-[#FFFDFD] text-[#1B1C1D]",
-        dark: "bg-[#1B1C1D] text-[#FFFDFD]",
+        primary: "bg-primary-500 text-gray-0",
+        secondary: "bg-secondary-500 text-gray-0",
       },
     },
     defaultVariants: {
-      theme: "light",
+      theme: "primary",
     },
   }
 );
 
-const arrowVariants = cva("absolute z-50 size-2.5 rotate-45 rounded-[2px]", {
+const arrowVariants = cva("absolute z-50 size-2.5 rotate-360 rounded-[2px]", {
   variants: {
     theme: {
-      light: "bg-[#FFFDFD]",
-      dark: "bg-[#1B1C1D]",
+      primary: "fill-primary-500",
+      secondary: "fill-secondary-500",
     },
   },
   defaultVariants: {
-    theme: "light",
+    theme: "primary",
   },
 });
 
@@ -68,7 +68,7 @@ interface TooltipContentProps
 
 function TooltipContent({
   className,
-  sideOffset = 0,
+  sideOffset = 10,
   children,
   theme,
   ...props
