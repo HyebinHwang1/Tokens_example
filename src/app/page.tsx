@@ -1,15 +1,33 @@
 "use client";
 
+import { Button } from "@/components/ui/button/Button";
+import {
+  Modal,
+  ModalContent,
+  ModalDescription,
+  ModalFooter,
+  ModalTrigger,
+} from "@/components/ui/modal";
+
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen mx-10 gap-3 text-2xs">
-      <label
-        htmlFor="date-input"
-        className="relative w-full border border-gray-300 rounded-md cursor-pointer flex items-center"
-      >
-        <div className="p-2 flex-1">날짜를 선택하세요</div>
-        <input type="date" className="h-full cursor-pointer" id="date-input" />
-      </label>
+    <div className="flex flex-col items-center justify-center mx-10 gap-3 text-2xs h-screen">
+      <Modal>
+        <ModalTrigger>Open</ModalTrigger>
+        <ModalContent>
+          <ModalDescription>
+            IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。IDまたはパスワvードが一致しません。
+          </ModalDescription>
+          <ModalFooter className="flex flex-row gap-2 border-t border-gray-200">
+            <Button size="full" className="h-10" variant="light">
+              キャンセル
+            </Button>
+            <Button size="full" className="h-10" variant="dark">
+              確認
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </div>
   );
 }
