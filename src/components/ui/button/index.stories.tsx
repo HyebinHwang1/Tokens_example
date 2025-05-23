@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "./Button";
 import { Plus } from "lucide-react";
+import { Button } from "./index";
 
 export default {
   title: "COMPONENTS/Button",
