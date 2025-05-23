@@ -8,7 +8,7 @@ import {
   BottomSheetTitle,
   BottomSheetTrigger,
 } from "./index";
-import { Button } from "../button/Button";
+import { Button } from "../button";
 
 const meta = {
   title: "COMPONENTS/BottomSheet",
@@ -53,7 +53,7 @@ function BasicSheetExample({
   const [open, setOpen] = React.useState(false);
 
   return (
-    <section className="h-[800px] w-[800px]">
+    <section className="h-[500px] w-[800px]">
       <BottomSheet open={open} onOpenChange={setOpen}>
         <BottomSheetTrigger asChild>
           <button className="px-4 py-2 bg-blue-500 text-white rounded-md">
