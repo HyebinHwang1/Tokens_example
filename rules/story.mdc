@@ -1,0 +1,191 @@
+# Storybook 컴포넌트 작성 규칙
+
+## 1. 기본 구조
+
+```tsx
+import type { Meta, StoryObj } from "@storybook/react";
+import { Component } from "./index";
+
+export default {
+  title: "COMPONENTS/ComponentName",
+  component: Component,
+  parameters: {
+    layout: "centered",
+  },
+  docs: {
+    source: {
+      type: "code",
+      language: "tsx",
+    },
+  },
+  tags: ["autodocs"],
+} as Meta<typeof Component>;
+
+type Story = StoryObj<typeof Component>;
+```
+
+## 2. Basic Story 작성 규칙
+
+- 모든 컴포넌트는 `Basic` 스토리를 포함해야 합니다.
+- `argTypes`를 통해 컨트롤 가능한 props를 정의합니다.
+- `args`에 기본값을 설정합니다.
+- `parameters`에 문서화 관련 설정을 추가합니다.
+
+```tsx
+export const Basic: Story = {
+  argTypes: {
+    propName: {
+      control: "select", // or "boolean", "text" 등
+      options: ["option1", "option2"], // select 타입일 경우
+      description: "prop 설명",
+    },
+  },
+  args: {
+    propName: "defaultValue",
+  },
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: "shown",
+      },
+    },
+  },
+  render: (args) => <Component {...args} />,
+};
+```
+
+## 3. 변형(Variant) 스토리 작성 규칙
+
+- 컴포넌트의 주요 변형을 보여주는 스토리를 포함합니다.
+- 여러 변형을 한 스토리에서 보여줄 때는 `section` 태그와 `flex` 레이아웃을 사용합니다.
+
+```tsx
+export const Variants: Story = {
+  render: () => (
+    <section className="flex gap-4">
+      <Component variant="variant1" />
+      <Component variant="variant2" />
+      <Component variant="variant3" />
+    </section>
+  ),
+};
+```
+
+## 4. 크기(Size) 스토리 작성 규칙
+
+- 크기 변형이 있는 경우 별도의 스토리로 분리합니다.
+- 각 크기별 설명을 포함합니다.
+
+```tsx
+export const Sizes: Story = {
+  render: () => (
+    <section className="flex gap-4 items-center">
+      <div>
+        <span className="block text-center mb-1">size1</span>
+        <Component size="size1" />
+      </div>
+      <div>
+        <span className="block text-center mb-1">size2</span>
+        <Component size="size2" />
+      </div>
+    </section>
+  ),
+};
+```
+
+## 5. 상태(State) 스토리 작성 규칙
+
+- disabled, selected 등의 상태를 보여주는 스토리를 포함합니다.
+- 상태별 설명을 포함합니다.
+
+```tsx
+export const States: Story = {
+  render: () => (
+    <section className="flex gap-4">
+      <Component state="default" />
+      <Component state="disabled" />
+      <Component state="selected" />
+    </section>
+  ),
+};
+```
+
+## 6. 라벨(Label) 스토리 작성 규칙
+
+- 라벨이 있는 경우 별도의 스토리로 분리합니다.
+- 접근성을 고려한 라벨링을 포함합니다.
+
+```tsx
+export const WithLabel: Story = {
+  render: () => (
+    <label className="flex items-center gap-2 cursor-pointer">
+      <Component />
+      <span>라벨 텍스트</span>
+    </label>
+  ),
+};
+```
+
+## 7. 문서화 규칙
+
+- 각 스토리에는 적절한 설명을 포함합니다.
+- 코드 예제가 보이도록 `sourceState: "shown"`을 설정합니다.
+- `argTypes`의 description을 통해 각 prop의 용도를 설명합니다.
+
+## 8. 스타일링 규칙
+
+- 일관된 간격을 위해 `gap-4`를 사용합니다.
+- 섹션 구분을 위해 `section` 태그를 사용합니다.
+- 레이아웃 정렬을 위해 `flex`와 `items-center`를 사용합니다.
+- 설명 텍스트는 `text-center`와 `mb-1`을 사용합니다.
+
+## 9. 접근성 규칙
+
+- 라벨이 있는 경우 `htmlFor`와 `id`를 연결합니다.
+- 비활성화 상태의 스타일링을 포함합니다.
+- 키보드 접근성을 고려한 스타일링을 추가합니다.
+
+## 10. 예시 코드
+
+```tsx
+// 기본 스토리
+export const Basic: Story = {
+  argTypes: {
+    variant: {
+      control: "select",
+      options: ["option1", "option2"],
+      description: "변형 스타일",
+    },
+  },
+  args: {
+    variant: "option1",
+  },
+  render: (args) => <Component {...args} />,
+};
+
+// 변형 스토리
+export const Variants: Story = {
+  render: () => (
+    <section className="flex gap-4">
+      <Component variant="option1" />
+      <Component variant="option2" />
+    </section>
+  ),
+};
+
+// 크기 스토리
+export const Sizes: Story = {
+  render: () => (
+    <section className="flex gap-4 items-center">
+      <div>
+        <span className="block text-center mb-1">Small</span>
+        <Component size="sm" />
+      </div>
+      <div>
+        <span className="block text-center mb-1">Medium</span>
+        <Component size="md" />
+      </div>
+    </section>
+  ),
+};
+```
