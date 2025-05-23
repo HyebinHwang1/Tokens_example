@@ -8,7 +8,9 @@ import { cn } from "@/lib/utils";
 import { useRef } from "react";
 import useSwipeToCloseSheet from "@/hooks/useSwipteTo";
 
-function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
+function BottomSheet({
+  ...props
+}: React.ComponentProps<typeof SheetPrimitive.Root>) {
   return (
     <SheetPrimitive.Root data-slot="sheet" {...props}>
       {props.children}
@@ -16,19 +18,19 @@ function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
   );
 }
 
-function SheetTrigger({
+function BottomSheetTrigger({
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Trigger>) {
   return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
 }
 
-function SheetClose({
+function BottomSheetClose({
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Close>) {
   return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
-function SheetPortal({
+function BottomSheetPortal({
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Portal>) {
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
@@ -50,17 +52,17 @@ function SheetOverlay({
   );
 }
 
-function SheetContent({
+function BottomSheetContent({
   className,
   children,
-  side = "bottom",
   showClose = false,
+  showHandleBar = true,
   onClose,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
   onClose: () => void;
-  side?: "top" | "right" | "bottom" | "left";
   showClose?: boolean;
+  showHandleBar?: boolean;
 }) {
   const swipeRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -79,20 +81,13 @@ function SheetContent({
         data-slot="sheet-content"
         className={cn(
           "sheet-content p-4 bg-white data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
-          side === "right" &&
-            "data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
-          side === "left" &&
-            "data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm",
-          side === "top" &&
-            "rounded-b-lg data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b",
-          side === "bottom" &&
-            "rounded-t-lg data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
+          "rounded-t-lg data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
           className
         )}
         {...props}
         ref={contentRef}
       >
-        {side === "bottom" && (
+        {showHandleBar && (
           <div className="flex justify-center pt-4 pb-6" ref={swipeRef}>
             <div className="min-h-1 w-10 bg-gray-200 rounded-sm" />
           </div>
@@ -109,7 +104,10 @@ function SheetContent({
   );
 }
 
-function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
+function BottomSheetHeader({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sheet-header"
@@ -119,7 +117,10 @@ function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
+function BottomSheetFooter({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sheet-footer"
@@ -129,7 +130,7 @@ function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function SheetTitle({
+function BottomSheetTitle({
   className,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Title>) {
@@ -142,7 +143,7 @@ function SheetTitle({
   );
 }
 
-function SheetDescription({
+function BottomSheetDescription({
   className,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Description>) {
@@ -156,13 +157,13 @@ function SheetDescription({
 }
 
 export {
-  Sheet,
-  SheetTrigger,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetFooter,
-  SheetTitle,
-  SheetDescription,
-  SheetPortal,
+  BottomSheet,
+  BottomSheetTrigger,
+  BottomSheetClose,
+  BottomSheetContent,
+  BottomSheetHeader,
+  BottomSheetFooter,
+  BottomSheetTitle,
+  BottomSheetDescription,
+  BottomSheetPortal,
 };
