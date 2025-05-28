@@ -1,0 +1,49 @@
+name: Generate Icons on Change
+
+on:
+  push:
+    branches:
+      - "icona-update-*" # icona-update-로 시작하는 모든 브랜치
+    paths:
+      - ".icona/icons.json" # 이 파일이 변경될 때만 워크플로우 실행
+  workflow_dispatch: # 수동으로도 실행 가능하도록 추가
+
+jobs:
+  generate-icons:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # 변경사항을 커밋하고 푸시하기 위해 필요
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }} # 커밋 푸시를 위한 PAT 또는 기본 GITHUB_TOKEN
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18" # 프로젝트에서 사용하는 Node.js 버전으로 변경 가능
+          cache: "npm" # 또는 'yarn', 'pnpm'
+
+      - name: Install dependencies
+        run: npm install # 또는 yarn install, pnpm install
+
+      - name: Generate icon components
+        run: npm run icons:generate # package.json에 정의된 스크립트 명령
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add src/components/icons/ # 생성된 아이콘 컴포넌트 경로
+          # icons.json 변경으로 인해 다른 파일이 변경될 수도 있다면 해당 경로도 git add에 추가합니다.
+          # 예: git add .icona/icons.json
+          # 파일이 실제로 변경되었는지 확인 후 커밋
+          if ! git diff --staged --quiet; then
+            git commit -m "Generate icon components from .icona/icons.json"
+            git push
+          else
+            echo "No changes to commit for icon components."
+          fi
