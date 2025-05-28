@@ -2,6 +2,11 @@
 
 import { HomeFilled24 } from "@/components/icons";
 
+/**
+ * Renders the home page layout with a loading indicator and a home icon.
+ *
+ * Displays a loading message above a home icon within a vertically centered container.
+ */
 export default function Home() {
   console.log(123123123123);
   return (
@@ -12,6 +17,11 @@ export default function Home() {
   );
 }
 
+/**
+ * Displays a loading message.
+ *
+ * Renders a simple div with the text "Loading...".
+ */
 function Loadingg() {
   return <div>Loading...</div>;
 }
