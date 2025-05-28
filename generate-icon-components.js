@@ -12,9 +12,10 @@ const iconsJsonPath = path.join(projectRoot, ".icona/icons.json");
 const outputDir = path.join(projectRoot, "src/components/icons");
 
 function kebabToPascalCase(str) {
-  return str.replace(/(^\w|-\w)/g, (match) =>
-    match.replace("-", "").toUpperCase()
-  );
+  return str
+    .replace(/^[-.]+/, "") // 문자열 시작 부분의 하이픈이나 점 제거
+    .replace(/[-.]+(\w)/g, (match, char) => char.toUpperCase()) // 하이픈 또는 점 뒤의 문자를 대문자로
+    .replace(/^\w/, (char) => char.toUpperCase()); // 첫 글자를 대문자로
 }
 
 // SVG 콘텐츠에서 속성을 JSX 호환 형태로 변환하는 함수
