@@ -11,9 +11,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic --project-token=chpt_737022f40d7d933",
-    "icons:svg": "node icona.config.js",
-    "icons:react": "npx @svgr/cli --typescript --replace-attr-values \"#000=currentColor,black=currentColor\" --out-dir src/components/icons src/assets/icons/svg",
-    "icons:generate": "npm run icons:svg && npm run icons:react"
+    "icons:generate": "node generate-icon-components.js"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.3.1",
@@ -35,7 +33,6 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.6",
     "@eslint/eslintrc": "^3",
-    "@icona/generator": "^0.9.2",
     "@storybook/addon-a11y": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
     "@storybook/addon-interactions": "^8.6.12",
