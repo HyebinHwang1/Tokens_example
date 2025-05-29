@@ -79,7 +79,7 @@ export const WithIcons: Story = {
     },
   },
   args: {
-    placeholder: "검색어를 입력하세요",
+    placeholder: "place holder プレースホルダー",
     leftIcon: <Search />,
     rightIcon: <EyeIcon />,
     error: false,
@@ -90,10 +90,10 @@ export const WithIcons: Story = {
 
 export const WithLabels: InputWithLabelStory = {
   args: {
-    label: "이름",
-    placeholder: "이름을 입력하세요",
+    label: "お名前",
+    placeholder: "お名前は必須項目です。",
     error: false,
-    feedback: "이름을 입력하세요.",
+    feedback: "お名前を入力してください。",
   },
   parameters: {
     docs: {
