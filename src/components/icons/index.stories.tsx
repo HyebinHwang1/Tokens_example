@@ -12,6 +12,16 @@ export default {
   parameters: {
     layout: "centered",
   },
+  args: {
+    size: "md",
+  },
+  argTypes: {
+    size: {
+      control: { type: "select" },
+      options: Object.keys(sizeOptions),
+      defaultValue: "md",
+    },
+  },
   tags: ["autodocs"],
 } as Meta<typeof Icons>;
 
@@ -50,6 +60,35 @@ export const BasicIcon: Story = {
         <CartOutline24 size="md" />
 <HomeOutline24 size="md" />
 <FilterFilled24 size="md" />
+        `,
+      },
+    },
+  },
+};
+
+export const ChangedColorIcon: Story = {
+  args: {
+    size: "xl",
+  },
+  render: () => {
+    return (
+      <section className="flex gap-4 border border-gray-300 shadow-md rounded-md p-4">
+        <Icons.CartOutline24 size="xl" className="text-primary-500" />
+        <Icons.HomeOutline24 size="xl" className="text-blue-500" />
+        <Icons.FilterFilled24 size="xl" className="text-green-500" />
+      </section>
+    );
+  },
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: "shown",
+      },
+      source: {
+        code: `
+        <CartOutline24 size="xl" className="text-primary-500"/>
+<HomeOutline24 size="xl" className="text-blue-500"/>
+<FilterFilled24 size="xl" className="text-green-500"/>
         `,
       },
     },
