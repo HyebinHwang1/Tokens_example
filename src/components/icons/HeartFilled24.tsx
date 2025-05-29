@@ -1,20 +1,27 @@
 import * as React from "react";
 import type { SVGProps } from "react";
+import { size } from "./constants";
 
-const HeartFilled24 = (props: SVGProps<SVGSVGElement>) => (
+const HeartFilled24 = (
+  props: SVGProps<SVGSVGElement> & { size?: keyof typeof size },
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    fill="currentColor" // 기본값, props로 덮어쓰기 가능
-    width="24"
-    height="24"
+    fill="currentColor"
+    width={size[props.size || "md"]}
+    height={size[props.size || "md"]}
     {...props}
   >
     <g id="heart.filled.24">
-<g id="heart.filled.24_2">
-<path id="Union" d="M7.55556 3.25C4.48731 3.25 2 5.69844 2 8.71875C2 9.94916 2.41279 11.0847 3.10948 11.9984L12 20.75L20.8905 11.9984C21.5872 11.0847 22 9.94916 22 8.71875C22 5.69844 19.5127 3.25 16.4444 3.25C14.6271 3.25 13.0136 4.10897 12 5.43697C10.9864 4.10897 9.37289 3.25 7.55556 3.25Z" fill="currentColor"/>
-</g>
-</g>
+      <g id="heart.filled.24_2">
+        <path
+          id="Union"
+          d="M7.55556 3.25C4.48731 3.25 2 5.69844 2 8.71875C2 9.94916 2.41279 11.0847 3.10948 11.9984L12 20.75L20.8905 11.9984C21.5872 11.0847 22 9.94916 22 8.71875C22 5.69844 19.5127 3.25 16.4444 3.25C14.6271 3.25 13.0136 4.10897 12 5.43697C10.9864 4.10897 9.37289 3.25 7.55556 3.25Z"
+          fill="currentColor"
+        />
+      </g>
+    </g>
   </svg>
 );
 
