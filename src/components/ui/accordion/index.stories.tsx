@@ -130,32 +130,6 @@ const accordionItems = [
   ),
 };
 
-export const MultipleItems: Story = {
-  args: {
-    type: "single",
-    collapsible: true,
-    className: "w-[400px] md:w-[500px]",
-    defaultValue: undefined,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "여러 개의 아이템을 가진 아코디언입니다.",
-      },
-    },
-  },
-  render: (args) => (
-    <Accordion {...args}>
-      {defaultItemsData.map((item) => (
-        <AccordionItem key={item.value} value={item.value}>
-          <AccordionTrigger>{item.trigger}</AccordionTrigger>
-          <AccordionContent>{item.content}</AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
-  ),
-};
-
 export const MultipleOpen: Story = {
   args: {
     type: "multiple",
