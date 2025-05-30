@@ -1,16 +1,16 @@
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogFooter,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
+  Alert,
+  AlertAction,
+  AlertFooter,
+  AlertContent,
+  AlertDescription,
+  AlertHeader,
+  AlertTitle,
+  AlertTrigger,
 } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 
-interface SimpleAlertDialogProps {
+interface SimpleAlertProps {
   description: string;
   actionButtonText: string;
   isOpen: boolean;
@@ -20,31 +20,31 @@ interface SimpleAlertDialogProps {
   title?: string;
 }
 
-export function SimpleAlertDialog({
+export default function SimpleAlert({
   isOpen,
   onClose,
   triggerButtonText,
   title,
   description,
   actionButtonText = "確認",
-}: SimpleAlertDialogProps) {
+}: SimpleAlertProps) {
   return (
-    <AlertDialog open={isOpen} onOpenChange={onClose}>
+    <Alert open={isOpen} onOpenChange={onClose}>
       {triggerButtonText && (
-        <AlertDialogTrigger asChild>
+        <AlertTrigger asChild>
           <Button>{triggerButtonText}</Button>
-        </AlertDialogTrigger>
+        </AlertTrigger>
       )}
 
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          {title && <AlertDialogTitle>{title}</AlertDialogTitle>}
-          <AlertDialogDescription>{description}</AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogAction>{actionButtonText}</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+      <AlertContent>
+        <AlertHeader>
+          {title && <AlertTitle>{title}</AlertTitle>}
+          <AlertDescription>{description}</AlertDescription>
+        </AlertHeader>
+        <AlertFooter>
+          <AlertAction>{actionButtonText}</AlertAction>
+        </AlertFooter>
+      </AlertContent>
+    </Alert>
   );
 }

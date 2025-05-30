@@ -1,30 +1,21 @@
 "use client";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import SimpleAlert from "@/components/ui/alert/simple";
+import { useState } from "react";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="flex flex-col items-center justify-center mx-10 gap-3 text-2xs h-screen w-[500px]">
-      <div className="bg-third-500">asdasd</div>
-      <Accordion type="single">
-        <AccordionItem value="1">
-          <AccordionTrigger>Accordion 1</AccordionTrigger>
-          <AccordionContent>Accordion 1</AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="2">
-          <AccordionTrigger>Accordion 2</AccordionTrigger>
-          <AccordionContent>Accordion 2</AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="3">
-          <AccordionTrigger>Accordion 3</AccordionTrigger>
-          <AccordionContent>Accordion 3</AccordionContent>
-        </AccordionItem>
-      </Accordion>
+      <button onClick={() => setIsOpen(true)}>onCLick</button>
+      <SimpleAlert
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        description="変更された会員情報はありません。"
+        actionButtonText="確認"
+      />
+      , useState
     </div>
   );
 }

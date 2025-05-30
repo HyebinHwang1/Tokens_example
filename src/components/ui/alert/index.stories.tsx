@@ -1,21 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React, { useState, useEffect } from "react";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
+  Alert,
+  AlertAction,
+  AlertContent,
+  AlertDescription,
+  AlertFooter,
+  AlertHeader,
+  AlertTitle,
+  AlertTrigger,
 } from "./index";
 import { Button } from "../button";
-import { SimpleAlertDialog } from "./simple";
+import SimpleAlert from "./simple";
 
-const meta: Meta<typeof AlertDialog> = {
-  title: "COMPONENTS/AlertDialog",
-  component: AlertDialog,
+const meta: Meta<typeof Alert> = {
+  title: "COMPONENTS/Alert",
+  component: Alert,
   parameters: {
     layout: "centered",
     docs: {
@@ -30,7 +30,7 @@ const meta: Meta<typeof AlertDialog> = {
 
 export default meta;
 
-type Story = StoryObj<typeof AlertDialog>;
+type Story = StoryObj<typeof Alert>;
 
 export const Basic: Story = {
   argTypes: {
@@ -52,22 +52,22 @@ export const Basic: Story = {
         code: `
 const [open, setOpen] = React.useState(false);
 
-<AlertDialog open={open} onOpenChange={setOpen}>
-  <AlertDialogTrigger asChild>
+<Alert open={open} onOpenChange={setOpen}>
+  <AlertTrigger asChild>
     <Button variant="light">オープン (Trigger)</Button>
-  </AlertDialogTrigger>
-  <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>変更された会員情報はありません。</AlertDialogTitle>
-      <AlertDialogDescription>
+  </AlertTrigger>
+  <AlertContent>
+    <AlertHeader>
+      <AlertTitle>変更された会員情報はありません。</AlertTitle>
+      <AlertDescription>
         変更された会員情報はありません。
-      </AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogAction onClick={() => setOpen(false)}>確認</AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>
+      </AlertDescription>
+    </AlertHeader>
+    <AlertFooter>
+      <AlertAction onClick={() => setOpen(false)}>確認</AlertAction>
+    </AlertFooter>
+  </AlertContent>
+</Alert>
         `,
       },
       description: {
@@ -84,33 +84,31 @@ const [open, setOpen] = React.useState(false);
     }, [args.open]);
 
     return (
-      <AlertDialog open={currentOpen} onOpenChange={setCurrentOpen}>
-        <AlertDialogTrigger asChild>
+      <Alert open={currentOpen} onOpenChange={setCurrentOpen}>
+        <AlertTrigger asChild>
           <Button variant="light">オープン (Trigger)</Button>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>
+        </AlertTrigger>
+        <AlertContent>
+          <AlertHeader>
+            <AlertTitle>変更された会員情報はありません。</AlertTitle>
+            <AlertDescription>
               変更された会員情報はありません。
-            </AlertDialogTitle>
-            <AlertDialogDescription>
-              変更された会員情報はありません。
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogAction onClick={() => setCurrentOpen(false)}>
+            </AlertDescription>
+          </AlertHeader>
+          <AlertFooter>
+            <AlertAction onClick={() => setCurrentOpen(false)}>
               確認
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+            </AlertAction>
+          </AlertFooter>
+        </AlertContent>
+      </Alert>
     );
   },
 };
 
-type SimpleStory = StoryObj<typeof SimpleAlertDialog>;
+type SimpleStory = StoryObj<typeof SimpleAlert>;
 
-export const SimpleAlert: SimpleStory = {
+export const SimpleAlertExample: SimpleStory = {
   argTypes: {
     isOpen: {
       control: "boolean",
@@ -149,7 +147,7 @@ const [isOpen, setIsOpen] = React.useState(false);
 
 <Button onClick={() => setIsOpen(true)}>Simple Alert オープン</Button> (트리거 예시)
 
-<SimpleAlertDialog
+<SimpleAlert
   isOpen={isOpen}
   onClose={() => setIsOpen(false)}
   title="Simple Alert"
@@ -172,7 +170,7 @@ const [isOpen, setIsOpen] = React.useState(false);
         <Button onClick={() => setIsOpen(true)}>
           Simple Alert オープン (Control)
         </Button>
-        <SimpleAlertDialog
+        <SimpleAlert
           isOpen={isOpen}
           onClose={() => {
             setIsOpen(false);
