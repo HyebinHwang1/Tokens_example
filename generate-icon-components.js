@@ -15,7 +15,7 @@ const outputDir = path.join(projectRoot, "src/components/icons");
 function kebabToPascalCase(str) {
   return str
     .replace(/^[-.]+/, "") // 문자열 시작 부분의 하이픈이나 점 제거
-    .replace(/[-.]+(\w)/g, (match, char) => char.toUpperCase()) // 하이픈 또는 점 뒤의 문자를 대문자로
+    .replace(/[-.]+(\w)/g, (_, char) => char.toUpperCase()) // 하이픈 또는 점 뒤의 문자를 대문자로
     .replace(/^\w/, (char) => char.toUpperCase()); // 첫 글자를 대문자로
 }
 
