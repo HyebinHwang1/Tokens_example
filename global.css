@@ -1,5 +1,0 @@
-@layer theme, base, components, utilities;
-
-@import "tailwindcss";
-/* TODO: @import "tw-animate-css" sheet 애니메이션 추가 필요, 버전 차이로 적용이 안됨 */
-@import "./src/app/theme.css";
