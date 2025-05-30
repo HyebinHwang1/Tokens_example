@@ -39,3 +39,4 @@ export { default as CheckboxNonFilled24 } from "./CheckboxNonFilled24";
 export { default as PlusCircleOutline24 } from "./PlusCircleOutline24";
 export { default as PlusCircleOpacity24 } from "./PlusCircleOpacity24";
 export { default as PlusOutline24 } from "./PlusOutline24";
+export { default as Sns_instagramOutline24 } from "./Sns_instagramOutline24";
