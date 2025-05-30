@@ -40,4 +40,3 @@ export { default as PlusCircleOutline24 } from "./PlusCircleOutline24";
 export { default as PlusCircleOpacity24 } from "./PlusCircleOpacity24";
 export { default as PlusOutline24 } from "./PlusOutline24";
 export { default as Sns_instagramOutline24 } from "./Sns_instagramOutline24";
-export { default as OffilineOutline24 } from "./OffilineOutline24";
