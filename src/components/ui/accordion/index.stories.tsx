@@ -87,17 +87,17 @@ const accordionItems = [
   {
     value: "item-1",
     trigger: "アウター",
-    content: "アウター 관련 내용이 여기에 표시됩니다.",
+    content: "アウター",
   },
   {
     value: "item-2",
     trigger: "トップス",
-    content: "トップス 관련 필터나 정보가 여기에 들어갑니다.",
+    content: "トップス",
   },
   {
     value: "item-3",
     trigger: "パンツ",
-    content: "パンツ 스타일 선택 옵션 등이 여기에 위치합니다.",
+    content: "パンツ",
   },
 ];
 
