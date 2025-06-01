@@ -6,6 +6,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useDragToScroll } from "@/hooks/useDragToScroll";
 
+// TODO: STICKY 구현 필요
 function Tabs({
   className,
   layout,
