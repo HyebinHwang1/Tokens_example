@@ -39,19 +39,22 @@ Storybook 스토리를 일관되고 정확하게 작성하기 위한 규칙입�
 *   **`Basic` 스토리의 문서 소스 코드 지침**: `Basic` 스토리는 **항상** `parameters.docs.source.code` 옵션을 사용하여, 문서(Docs) 탭에 실제 사용자가 참고할 핵심적인 코드 예시를 명시적으로 제공해야 합니다.
     *   제공되는 코드 예시에는 **`import` 문을 포함하지 않습니다.**
     *   코드 예시는 **별도의 `export function` 선언 없이**, 실제 로직(예: `React.useState`를 사용한 상태 관리 및 JSX 반환 부분)부터 바로 시작하도록 작성하여 사용자가 핵심 로직을 빠르게 파악하고 활용할 수 있도록 합니다. 예시: `const [value, setValue] = React.useState(""); return (<Input value={value} onChange={...} />);` 와 같은 형태.
-*   **합성 컴포넌트(Compound Components)의 경우**: `Basic` 스토리의 `parameters.docs.source.code` 옵션을 사용하여, 위 지침(import문 제외, export function 제외)에 따라 부모와 자식 컴포넌트들을 함께 사용하는 전체적인 마크업 구조 예시를 제공합니다.
-*   **라벨, 피드백 메시지 등이 결합된 컴포넌트의 경우**: `Basic` 스토리는 핵심이 되는 기본 컴포넌트(예: 순수한 `Input` 또는 `Textarea`) 자체에 집중합니다. 라벨, 피드백 메시지 등이 결합된 형태는 `WithLabel`, `WithFeedback` 등 명확한 이름의 별도 스토리로 분리하여 작성하고, 해당 스토리에서 조합된 형태의 사용 예시와 관련 `props`를 상세히 다룹니다. 이러한 파생 스토리의 문서 소스 코드 또한 위 지침을 따릅니다.
+*   **합성 컴포넌트(Compound Components)의 경우**: **`Basic` 스토리만** `parameters.docs.source.code` 옵션을 사용하여, 위 지침(import문 제외, export function 제외)에 따라 부모와 자식 컴포넌트들을 함께 사용하는 전체적인 마크업 구조 예시를 제공합니다. 합성 컴포넌트의 다른 변형 스토리들은 소스 코드를 노출하지 않습니다.
+*   **라벨, 피드백 메시지 등이 결합된 파생 스토리 (예: `WithLabel`, `WithFeedback`)**: `Basic` 스토리는 핵심이 되는 기본 컴포넌트에 집중합니다. 라벨 등이 결합된 파생 스토리는 명확한 이름으로 분리하여 작성하고, 이러한 파생 스토리들은 **문서에 소스 코드를 명시적으로 노출하지 않습니다 (`parameters.docs.source.code`를 설정하지 않음).**
 *   **사용자 입력 컴포넌트의 상태 관리 및 문서화**: 사용자의 입력에 따라 상태가 변경되는 컴포넌트의 경우(예: `Input`, `Textarea`), `render` 함수 내에서 `React.useState`를 활용하여 사용자가 직접 입력하고 그 결과를 확인할 수 있도록 `Basic` 또는 관련 파생 스토리(예: `WithLabel`)를 구현할 수 있습니다.
-    *   이 경우, 스토리의 `parameters.docs.source.code` 옵션을 사용하여 **위의 코드 예시 지침(`import` 문 제외, `export function` 제외, 핵심 로직부터 시작)을 따라** `React.useState`를 포함한 전체 예시 코드를 문서에 제공함으로써 사용자가 실제 환경에서의 상태 관리 방식을 이해하고 쉽게 적용할 수 있도록 돕습니다.
+    *   `Basic` 스토리의 경우, `parameters.docs.source.code` 옵션을 사용하여 위의 코드 예시 지침을 따라 `React.useState`를 포함한 예시 코드를 문서에 제공합니다.
+    *   `Basic`이 아닌 파생 스토리(예: `WithLabel`)의 경우, `React.useState`를 사용하더라도 문서에 소스 코드를 명시적으로 노출하지 않습니다.
     *   Storybook 컨트롤 패널을 통해 `error`, `disabled`와 같은 주요 상태를 사용자가 직접 테스트하고 확인할 수 있도록 관련 스토리의 `argTypes`를 상세히 설정합니다.
 
 **4. 변형(Variant/State) 스토리 작성 규칙**
 
 *   각각의 주요 변형(색상, 크기, 스타일 등)이나 상태(활성/비활성, 선택됨 등)를 명확하게 보여주는 별도의 스토리를 작성합니다.
+*   **문서 소스 코드 비노출**: `Basic` 스토리와 `Basic` 합성 컴포넌트 스토리를 제외한 모든 변형/상태 스토리들은 **문서에 소스 코드를 명시적으로 노출하지 않습니다 (`parameters.docs.source.code`를 설정하지 않음).** Storybook이 자동으로 생성하는 소스 코드(주로 `render` 함수 기반) 또는 `Controls` 탭을 통해 컴포넌트의 사용법을 확인합니다.
 *   `render` 함수 내에서 여러 예시 컴포넌트를 `section` 또는 `div` 태그로 그룹화합니다.
 *   `className` (예: `flex gap-4 items-center`)을 활용하여 그룹화된 컴포넌트들의 레이아웃을 적절히 조정합니다.
 *   각 컴포넌트 예시에는 명확한 `children` 텍스트나 속성을 부여하여 어떤 변형인지 시각적으로 쉽게 구분할 수 있도록 합니다. (예: `<Badge color="light">Light</Badge>`)
 *   특정 상태를 고정하여 보여주는 스토리의 경우(예: `Disabled` 스토리), `args` 객체를 사용하여 해당 `prop` 값을 직접 설정할 수 있습니다. (예: `args: { disabled: true }`)
+*   **고정된 시각적 요소(예: 아이콘)를 포함하는 변형 스토리**: 특정 아이콘이나 스타일이 고정된 변형을 보여주는 스토리의 경우, 해당 시각적 요소(예: `leftIcon`, `rightIcon`)를 `render` 함수 내에서 직접 컴포넌트에 할당하여 명확하게 고정된 모습을 보여줄 수 있습니다. (이 경우에도 소스 코드는 위 규칙에 따라 노출하지 않습니다.)
 
 **5. 복잡한 상호작용 또는 여러 컴포넌트 조합 스토리**
 

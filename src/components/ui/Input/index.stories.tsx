@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Input, InputWithLabel } from ".";
-import { EyeIcon, Search, AlertCircleIcon } from "lucide-react";
+import { Search, AlertCircleIcon, MailIcon, EyeIcon } from "lucide-react";
 
 const meta = {
   title: "COMPONENTS/Input",
@@ -108,8 +108,6 @@ return (
 export const WithIcons: Story = {
   args: {
     placeholder: "아이콘과 함께 검색...",
-    leftIcon: <Search className="size-4 text-muted-foreground" />,
-    rightIcon: <EyeIcon className="size-4 text-muted-foreground" />,
     error: false,
     disabled: false,
   },
@@ -119,30 +117,17 @@ export const WithIcons: Story = {
         story:
           "좌우 아이콘을 포함하는 `Input` 컴포넌트입니다. 사용자가 직접 입력 테스트를 할 수 있습니다.",
       },
-      source: {
-        code: `const [value, setValue] = React.useState("");
-
-return (
-  <Input
-    placeholder="아이콘과 함께 검색..."
-    value={value}
-    onChange={(e) => setValue(e.target.value)}
-    leftIcon={<Search className="size-4 text-muted-foreground" />}
-    rightIcon={<EyeIcon className="size-4 text-muted-foreground" />}
-  />
-);`,
-      },
-    },
-    controls: {
-      exclude: ["className", "value", "onChange"],
     },
   },
   render: function Render(args) {
     const [value, setValue] = React.useState(args.value || "");
+
     return (
       <Input
         {...args}
         value={value}
+        leftIcon={<MailIcon className="size-4" />}
+        rightIcon={<EyeIcon className="size-4" />}
         onChange={(e) => {
           setValue(e.target.value);
           args.onChange?.(e);

@@ -27,3 +27,7 @@
 [v2.0.4] Development: `rules/make-story.mdc` 규칙에 따라 `src/components/ui/Input/index.stories.tsx` 파일을 전체적으로 재작성함. `Input` 및 `InputWithLabel`의 각 스토리에 `React.useState`를 적용하여 인터랙티브하게 만들고, 문서 소스 코드(`parameters.docs.source.code`)를 규칙에 맞게 업데이트함. 불필요한 `inputWithLabelMeta` 변수 및 관련 타입을 삭제하고 `WithLabel` 스토리 타입을 직접 명시하여 코드 정리.
 
 [v2.0.5] Development: `rules/make-story.mdc`의 `Basic` 스토리 규칙을 수정하여 문서에 표시될 예제 코드에서 `import`문과 `export function`을 제외하고 핵심 로직부터 시작하도록 변경. `src/components/ui/Input/index.stories.tsx` 파일의 관련 스토리들 (`Basic`, `WithIcons`, `Error`, `WithLabel`)의 `parameters.docs.source.code` 내용을 새 규칙에 맞게 업데이트함. `WithLabel` 스토리의 `render` 함수 내 `@ts-ignore` 관련 린터 문제 발생 및 해결 시도.
+
+[v2.0.6] Development: `rules/make-story.mdc` 문서의 "4. 변형(Variant/State) 스토리 작성 규칙" 섹션 수정. 변형 스토리에서 아이콘 등 특정 시각적 요소를 `args` 대신 `render` 함수 내에 직접 할당하여 고정된 모습을 보여주는 경우에 대한 지침 추가 (관련 `argTypes` 및 `source.code` 처리 방법 포함). 이는 `Input` 컴포넌트의 `WithIcons` 스토리 수정 사항을 일반화한 규칙임.
+
+[v2.0.7] Development: `rules/make-story.mdc` 문서의 스토리 소스 코드 노출 규칙 변경. `Basic` 스토리와 합성 컴포넌트의 `Basic` 스토리를 제외한 모든 파생/변형 스토리는 `parameters.docs.source.code`를 설정하지 않아 문서에 소스 코드를 명시적으로 노출하지 않도록 수정함. 또한, 변형 스토리에서 고정된 시각적 요소를 사용할 때 컨트롤 패널(`argTypes`, `controls.exclude`) 관련 권장 사항 삭제.
