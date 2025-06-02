@@ -23,3 +23,7 @@
 [v2.0.2] Development: `rules/make-story.mdc` 파일의 "3.1. 라벨 및 피드백을 포함하는 컴포넌트 스토리" 규칙 수정. `Basic` 스토리는 라벨 없는 기본 컴포넌트를 표시하고, 라벨 및 피드백 포함 형태는 `WithLabel` 등으로 분리하여 작성하도록 변경.
 
 [v2.0.3] Development: `rules/make-story.mdc` 파일 구조 변경. "3.1. 라벨 및 피드백을 포함하는 컴포넌트 스토리" 섹션의 내용을 "3. Basic 스토리 작성 규칙"으로 통합하고 3.1 섹션은 삭제함. `Basic` 스토리 정의, 파생 스토리(예: `WithLabel`) 원칙, 사용자 입력 컴포넌트의 상태 관리(`React.useState`) 및 문서화 지침을 `Basic` 스토리 규칙 내에 포함시킴.
+
+[v2.0.4] Development: `rules/make-story.mdc` 규칙에 따라 `src/components/ui/Input/index.stories.tsx` 파일을 전체적으로 재작성함. `Input` 및 `InputWithLabel`의 각 스토리에 `React.useState`를 적용하여 인터랙티브하게 만들고, 문서 소스 코드(`parameters.docs.source.code`)를 규칙에 맞게 업데이트함. 불필요한 `inputWithLabelMeta` 변수 및 관련 타입을 삭제하고 `WithLabel` 스토리 타입을 직접 명시하여 코드 정리.
+
+[v2.0.5] Development: `rules/make-story.mdc`의 `Basic` 스토리 규칙을 수정하여 문서에 표시될 예제 코드에서 `import`문과 `export function`을 제외하고 핵심 로직부터 시작하도록 변경. `src/components/ui/Input/index.stories.tsx` 파일의 관련 스토리들 (`Basic`, `WithIcons`, `Error`, `WithLabel`)의 `parameters.docs.source.code` 내용을 새 규칙에 맞게 업데이트함. `WithLabel` 스토리의 `render` 함수 내 `@ts-ignore` 관련 린터 문제 발생 및 해결 시도.

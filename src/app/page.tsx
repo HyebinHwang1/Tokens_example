@@ -1,6 +1,14 @@
 "use client";
 
-import { Tabs, TabsList } from "@/components/ui/tab";
+import { Button } from "@/components/ui/button";
+import {
+  Dropdown,
+  DropdownArrowButton,
+  DropdownContent,
+  DropdownItem,
+  DropdownTrigger,
+} from "@/components/ui/dropdown";
+import { useState } from "react";
 
 const tabs = [
   {
@@ -42,15 +50,24 @@ const tabs = [
 ];
 
 export default function Home() {
+  const [open, setOpen] = useState(false);
   return (
-    <div className="flex flex-col items-center justify-center mx-10 gap-3 text-2xs h-screen w-full border">
-      <Tabs>
-        {tabs.map((tab) => (
-          <TabsList key={tab.value} href="#" active={tab.value === "tab1"}>
-            {tab.label}
-          </TabsList>
-        ))}
-      </Tabs>
+    <div className="flex flex-col items-center justify-center mx-10 gap-3 text-2xs h-screen w-80 border">
+      <div className="items-center w-full grid grid-cols-2">
+        <div>
+          <Button className="w-full justify-baseline">123</Button>
+        </div>
+        <Dropdown open={open} onOpenChange={setOpen}>
+          <DropdownTrigger asChild>
+            <DropdownArrowButton open={open}>123</DropdownArrowButton>
+          </DropdownTrigger>
+          <DropdownContent>
+            {tabs.map((tab) => (
+              <DropdownItem key={tab.value}>{tab.label}</DropdownItem>
+            ))}
+          </DropdownContent>
+        </Dropdown>
+      </div>
     </div>
   );
 }

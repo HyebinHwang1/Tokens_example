@@ -24,7 +24,18 @@ const inputVariants = cva(inputBaseStyle, {
 });
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, error = false, leftIcon, rightIcon, ...props }, ref) => {
+  (
+    {
+      className,
+      type,
+      error = false,
+      leftIcon,
+      rightIcon,
+      placeholder = "内容を入力してください。",
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div className="relative">
         {leftIcon && (
@@ -40,6 +51,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             rightIcon && "pr-10",
             className
           )}
+          placeholder={placeholder}
           {...props}
           aria-invalid={error}
           ref={ref}
