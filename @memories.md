@@ -17,3 +17,9 @@
 [v0.1.9] Development: AlertDialog 스토리 생성 중 발생한 린트 오류에 대해 임시 조치함. Button 컴포넌트의 variant 타입 문제 및 AlertDialogAction의 스타일링 유연성 확보를 위한 근본적인 컴포넌트 수정이 필요함을 사용자에게 안내. #storybook #alertdialog #linting #compdev
 
 [v0.2.0] Development: AlertDialog 스토리 파일에서 DestructiveAction, WithOnlyConfirm 스토리를 삭제하고, 외부에서 상태를 제어하는 SimpleAlertDialog 컴포넌트를 사용하는 SimpleAlert 스토리를 추가함. Storybook 컨트롤 및 문서 예시 코드 포함. #storybook #alertdialog #refactor #simplification
+
+[v2.0.1] Development: `InputWithLabel` 스토리의 라벨 및 피드백 메시지 표시 방식을 일관되게 적용하기 위해 `rules/make-story.mdc` 파일에 "3.1. 라벨 및 피드백을 포함하는 컴포넌트 스토리" 규칙을 추가함. 해당 규칙은 `Basic` 스토리 구성, `argTypes` 설정, 문서용 소스 코드 제공, `React.useState` 사용 예시 등을 포함함.
+
+[v2.0.2] Development: `rules/make-story.mdc` 파일의 "3.1. 라벨 및 피드백을 포함하는 컴포넌트 스토리" 규칙 수정. `Basic` 스토리는 라벨 없는 기본 컴포넌트를 표시하고, 라벨 및 피드백 포함 형태는 `WithLabel` 등으로 분리하여 작성하도록 변경.
+
+[v2.0.3] Development: `rules/make-story.mdc` 파일 구조 변경. "3.1. 라벨 및 피드백을 포함하는 컴포넌트 스토리" 섹션의 내용을 "3. Basic 스토리 작성 규칙"으로 통합하고 3.1 섹션은 삭제함. `Basic` 스토리 정의, 파생 스토리(예: `WithLabel`) 원칙, 사용자 입력 컴포넌트의 상태 관리(`React.useState`) 및 문서화 지침을 `Basic` 스토리 규칙 내에 포함시킴.
