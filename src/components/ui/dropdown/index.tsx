@@ -4,6 +4,10 @@ import * as React from "react";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 
 import { cn } from "@/lib/utils";
+import { ChevronDownIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SetStateAction } from "react";
+import { Dispatch } from "react";
 
 function Dropdown({
   ...props
@@ -27,6 +31,36 @@ function DropdownTrigger({
       data-slot="dropdown-menu-trigger"
       {...props}
     />
+  );
+}
+
+function DropdownArrowButton({
+  showArrow = true,
+  open,
+  children,
+  ...props
+}: React.ComponentProps<typeof Button> & {
+  showArrow?: boolean;
+  open?: boolean;
+  children?: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <Button
+      variant="ghost"
+      className={cn("flex items-center gap-2", props.className)}
+      {...props}
+    >
+      {children}
+      {showArrow && (
+        <ChevronDownIcon
+          className={cn(
+            "ml-auto size-4 transition-transform duration-300 ease-in-out",
+            open && "rotate-180"
+          )}
+        />
+      )}
+    </Button>
   );
 }
 
@@ -80,11 +114,45 @@ function DropdownItem({
   );
 }
 
+interface SimpleDropdownProps {
+  open: boolean;
+  buttonText: string;
+  onOpenChange: Dispatch<SetStateAction<boolean>>;
+  items: {
+    label: string;
+    onClick: () => void;
+  }[];
+}
+
+function SimpleDropdown({
+  open,
+  buttonText,
+  onOpenChange,
+  items,
+}: SimpleDropdownProps) {
+  return (
+    <Dropdown open={open} onOpenChange={onOpenChange}>
+      <DropdownTrigger asChild>
+        <DropdownArrowButton open={open}>{buttonText}</DropdownArrowButton>
+      </DropdownTrigger>
+      <DropdownContent>
+        {items.map((item) => (
+          <DropdownItem key={item.label} onClick={item.onClick}>
+            {item.label}
+          </DropdownItem>
+        ))}
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+
 export {
   Dropdown,
   DropdownPortal,
   DropdownTrigger,
   DropdownContent,
   DropdownGroup,
+  DropdownArrowButton,
   DropdownItem,
+  SimpleDropdown,
 };
