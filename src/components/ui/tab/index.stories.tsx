@@ -26,6 +26,7 @@ const meta: Meta<typeof Tabs> = {
       description:
         "탭 레이아웃을 설정합니다. `full`은 일반적인 스크롤 가능한 탭, `compact`는 탭 아이템들이 공간을 균등하게 채웁니다.",
     },
+    className: { control: false },
     children: { control: false },
   },
 };
@@ -112,7 +113,6 @@ export const Basic: StoryObj<TabStoryProps> = {
     items: tabItems.slice(0, 4), // 기본 4개 탭
     initialActiveTab: "tab1",
     layout: "full",
-    className: "max-w-md", // 컨테이너 너비 제한 예시
   },
   parameters: {
     ...Template.parameters,
@@ -132,7 +132,6 @@ export const CompactLayout: StoryObj<TabStoryProps> = {
     items: tabItems.slice(0, 3), // Compact 예시용 3개 탭
     initialActiveTab: "tab2",
     layout: "compact",
-    className: "max-w-md",
   },
   parameters: {
     ...Template.parameters,
