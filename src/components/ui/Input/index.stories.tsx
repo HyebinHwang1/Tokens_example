@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Input, InputWithLabel } from ".";
-import { Search, MailIcon, EyeIcon } from "lucide-react";
+import { MailIcon, EyeIcon } from "lucide-react";
 
 const meta = {
   title: "COMPONENTS/Input",
@@ -205,13 +205,4 @@ export const WithIcons: Story = {
       />
     );
   },
-};
-
-export const Disabled: Story = {
-  args: {
-    value: "入力できません。",
-    disabled: true,
-    leftIcon: <Search className="size-4" />,
-  },
-  render: (args) => <Input {...args} />,
 };
