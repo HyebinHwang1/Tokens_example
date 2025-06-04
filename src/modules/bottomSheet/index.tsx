@@ -59,11 +59,13 @@ function BottomSheetContent({
   showClose = false,
   showHandleBar = true,
   onClose,
+  isOpen,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
   onClose: () => void;
   showClose?: boolean;
   showHandleBar?: boolean;
+  isOpen: boolean;
 }) {
   const swipeRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -73,6 +75,7 @@ function BottomSheetContent({
     containerRef: contentRef,
     threshold: 100,
     onClose,
+    isOpen,
   });
 
   return (
@@ -185,6 +188,7 @@ function SimpleBottomSheet({
         <BottomSheetTrigger asChild>{triggerButton}</BottomSheetTrigger>
       )}
       <BottomSheetContent
+        isOpen={isOpen}
         showHandleBar={showHandleBar}
         showClose={showClose}
         onClose={onClose}

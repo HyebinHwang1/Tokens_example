@@ -15,6 +15,7 @@ interface useSwipeToCloseSheetProps {
   containerRef: RefObject<HTMLDivElement | null>;
   threshold: number;
   onClose: () => void;
+  isOpen: boolean;
 }
 
 const useSwipeToCloseSheet = ({
@@ -22,6 +23,7 @@ const useSwipeToCloseSheet = ({
   containerRef,
   threshold,
   onClose,
+  isOpen,
 }: useSwipeToCloseSheetProps) => {
   const [swipeState, setSwipeState] = useState<SwipeState>({
     startY: null,
@@ -49,6 +51,7 @@ const useSwipeToCloseSheet = ({
   }, [containerRef]);
 
   const handleStart = useCallback((e: TouchEvent) => {
+    console.log("start?");
     setSwipeState({
       startY: e.touches[0].clientY,
       isDragging: true,
@@ -58,6 +61,7 @@ const useSwipeToCloseSheet = ({
 
   const handleMove = useCallback(
     (e: TouchEvent) => {
+      console.log("move?");
       const { startY, isDragging } = swipeState;
       if (startY === null || !isDragging) return;
 
@@ -91,7 +95,8 @@ const useSwipeToCloseSheet = ({
 
   useEffect(() => {
     const element = swipeRef.current;
-    if (!element) return;
+    console.log("element", element, isOpen);
+    if (!element || !isOpen) return;
 
     element.addEventListener("touchstart", handleStart, { passive: true });
     document.addEventListener("touchmove", handleMove, { passive: false });
@@ -102,7 +107,7 @@ const useSwipeToCloseSheet = ({
       document.removeEventListener("touchmove", handleMove);
       document.removeEventListener("touchend", handleEnd);
     };
-  }, [swipeRef, handleStart, handleMove, handleEnd]);
+  }, [swipeRef, handleStart, handleMove, handleEnd, isOpen]);
 };
 
 export default useSwipeToCloseSheet;

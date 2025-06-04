@@ -1,13 +1,11 @@
-
-> tokens_example@0.1.0 build-storybook
-> storybook build --output-dir=/var/folders/sv/qf7wnpqx6gg6c3zlwb71m7fc0000gn/T/chromatic--6891-zBIj8HGGIc6j
-
-[1m@storybook/core v8.6.12
+yarn run v1.22.22
+$ storybook build --output-dir=/var/folders/sv/qf7wnpqx6gg6c3zlwb71m7fc0000gn/T/chromatic--93382-uSmno97zKteP
+[1m@storybook/core v8.6.14
 [22m
-info => Cleaning outputDir: [36m../../../../var/folders/sv/qf7wnpqx6gg6c3zlwb71m7fc0000gn/T/chromatic--6891-zBIj8HGGIc6j[39m
+info => Cleaning outputDir: [36m../../../../var/folders/sv/qf7wnpqx6gg6c3zlwb71m7fc0000gn/T/chromatic--93382-uSmno97zKteP[39m
 info => Loading presets
 info => Building manager..
-info => Manager built ([38;2;181;126;229m132 ms[39m)
+info => Manager built ([38;2;181;126;229m151 ms[39m)
 info => Building preview..
 WARN No story files found for the specified pattern: [34msrc/**/*.mdx[39m
 info Addon-docs: using MDX3
@@ -18,21 +16,17 @@ info Using tsconfig paths for react-docgen
 WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 WARN This can impact web performance.
 WARN Assets: 
-WARN   static/media/example.fe2269bd.png (439 KiB)
-WARN   static/media/banner_example_image.4e8a2018.png (1.75 MiB)
-WARN   static/media/product_example.5b22b6b5.png (1.68 MiB)
-WARN   static/media/example_image_2.1d125670.png (917 KiB)
-WARN   static/media/example_image_3.bd17e91c.png (301 KiB)
 WARN   735.19600c8b.iframe.bundle.js (361 KiB)
 WARN   609.94e4ccae.iframe.bundle.js (828 KiB)
 WARN   865.fc3c4563.iframe.bundle.js (1.88 MiB)
-WARN   878.06af0d67.iframe.bundle.js (974 KiB)
+WARN   878.97325315.iframe.bundle.js (987 KiB)
 WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 WARN Entrypoints:
-WARN   main (1.96 MiB)
-WARN       runtime~main.c40cfb31.iframe.bundle.js
+WARN   main (1.97 MiB)
+WARN       runtime~main.c53b884e.iframe.bundle.js
 WARN       865.fc3c4563.iframe.bundle.js
-WARN       main.876cd867.iframe.bundle.js
+WARN       main.dca44ce1.iframe.bundle.js
 WARN 
-info => Preview built ([38;2;181;126;229m8.21 s[39m)
-info => Output directory: /var/folders/sv/qf7wnpqx6gg6c3zlwb71m7fc0000gn/T/chromatic--6891-zBIj8HGGIc6j
+info => Preview built ([38;2;181;126;229m9.75 s[39m)
+info => Output directory: /var/folders/sv/qf7wnpqx6gg6c3zlwb71m7fc0000gn/T/chromatic--93382-uSmno97zKteP
+Done in 12.87s.
