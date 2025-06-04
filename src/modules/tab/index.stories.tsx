@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Tabs, TabsList } from "./index";
 
 const meta: Meta<typeof Tabs> = {
-  title: "COMPONENTS/Tabs",
+  title: "Modules/Tab",
   component: Tabs,
   parameters: {
     layout: "center",

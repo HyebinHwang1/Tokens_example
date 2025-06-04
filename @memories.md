@@ -32,10 +32,4 @@
 
 [v2.0.7] Development: `rules/make-story.mdc` 문서의 스토리 소스 코드 노출 규칙 변경. `Basic` 스토리와 합성 컴포넌트의 `Basic` 스토리를 제외한 모든 파생/변형 스토리는 `parameters.docs.source.code`를 설정하지 않아 문서에 소스 코드를 명시적으로 노출하지 않도록 수정함. 또한, 변형 스토리에서 고정된 시각적 요소를 사용할 때 컨트롤 패널(`argTypes`, `controls.exclude`) 관련 권장 사항 삭제.
 
-[v2.0.8] Development: `rules/make-story.mdc`의 최신 규칙에 따라 `src/components/ui/badge/index.stories.tsx` 파일 수정. Meta 객체의 `docs` 설정 위치 변경, 기본 `argTypes` 추가, `Basic` 스토리에 `source.code` 제공 및 설명 추가, 변형 스토리들(`Color`, `Size`, `Capsule`)은 `source.code`를 노출하지 않고 설명을 추가하는 방식으로 업데이트함.
-
-[v2.0.9] Development: `rules/make-story.mdc`의 최신 규칙에 따라 `src/components/ui/bottomSheet/index.stories.tsx` 파일 수정. Meta 객체 정리 (기본 argTypes 추가, canvas.sourceState 위치 조정), `Basic` 스토리에 상세 설명 및 규칙에 맞는 `source.code` (import/export 제외, 핵심 로직 위주) 제공, `args` 기본값 설정 등을 통해 문서의 질을 향상시키고 규칙을 준수함.
-
-[v2.1.0] Development: 사용자의 요청에 따라 `src/components/ui/bottomSheet/index.stories.tsx` 파일에 `SimpleBottomSheet` 컴포넌트를 위한 `SimpleSheet` 스토리를 추가함. `SimpleSheetExample` 헬퍼 컴포넌트를 도입하여 스토리 내 상태 관리를 처리하고, `rules/make-story.mdc` 규칙에 맞춰 `argTypes`, `args`, 문서 설명(`description.story`), 예시 소스 코드(`source.code`)를 작성함. 예시 코드는 실제 사용 시나리오를 반영한 `App` 함수 컴포넌트 형태로 제공됨.
-
-[v2.1.1] Development: `rules/make-story.mdc` 문서에 따라 `src/components/ui/checkbox/index.stories.tsx` 파일을 대대적으로 수정함. 상태 관리가 필요한 스토리(Basic, Checked, WithLabel)에 헬퍼 컴포넌트를 도입하고, 각 스토리의 타입을 헬퍼 컴포넌트의 Props 타입으로 지정하여 타입 안정성을 확보함. Storybook 컨트롤(argTypes, args)이 헬퍼 Props와 연동되도록 수정하고, 모든 스토리의 문서(description, source.code)를 규칙에 맞게 업데이트함. 이 과정에서 발생한 다수의 린트 오류를 단계적으로 해결함. #storybook #checkbox #refactor #rules #linting #typescript
+[v1.1.2] Development: Updated STORYBOOK_GUIDE.MD with a new section "5. 주요 컴포넌트 스토리 예시" summarizing key story examples and guiding users to refer to actual story files, and added "6. 추가 팁" section with FAQ and Notion utilization tips to enhance usability for Notion. This aims to make the guide more Notion-friendly and complete.

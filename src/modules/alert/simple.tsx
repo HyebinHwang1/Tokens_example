@@ -7,7 +7,7 @@ import {
   AlertHeader,
   AlertTitle,
   AlertTrigger,
-} from "@/components/ui/alert";
+} from "@/modules/alert/index";
 import { Button } from "@/components/ui/button";
 
 interface SimpleAlertProps {

@@ -10,11 +10,11 @@ import {
   AlertTitle,
   AlertTrigger,
 } from "./index";
-import { Button } from "../button";
+import { Button } from "@/components/ui/button";
 import SimpleAlert from "./simple";
 
 const meta: Meta<typeof Alert> = {
-  title: "COMPONENTS/Alert",
+  title: "Modules/Alert",
   component: Alert,
   parameters: {
     layout: "centered",

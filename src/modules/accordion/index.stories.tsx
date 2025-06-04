@@ -8,7 +8,7 @@ import {
 } from "./index";
 
 const meta: Meta<typeof Accordion> = {
-  title: "COMPONENTS/Accordion",
+  title: "Modules/Accordion",
   component: Accordion,
   parameters: {
     layout: "centered",

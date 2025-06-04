@@ -12,7 +12,7 @@ import {
 } from "./index";
 
 const meta: Meta<DropdownStoryProps> = {
-  title: "COMPONENTS/Dropdown",
+  title: "Modules/Dropdown",
   component: Dropdown,
   parameters: {
     layout: "centered",

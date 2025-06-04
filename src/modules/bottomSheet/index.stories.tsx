@@ -9,10 +9,10 @@ import {
   BottomSheetTrigger,
   SimpleBottomSheet,
 } from "./index";
-import { Button } from "../button";
+import { Button } from "@/components/ui/button";
 
 const meta = {
-  title: "COMPONENTS/BottomSheet",
+  title: "Modules/BottomSheet",
   component: BottomSheet,
   parameters: {
     layout: "centered",

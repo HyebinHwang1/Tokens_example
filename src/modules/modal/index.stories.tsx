@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 
 export default {
-  title: "COMPONENTS/Modal",
+  title: "Modules/Modal",
   component: Modal,
   parameters: {
     layout: "centered",
