@@ -18,6 +18,9 @@ const meta: Meta<typeof Accordion> = {
         language: "tsx",
       },
     },
+    controls: {
+      exclude: ["className", "children"],
+    },
   },
   tags: ["autodocs"],
   argTypes: {
@@ -31,12 +34,6 @@ const meta: Meta<typeof Accordion> = {
       control: "boolean",
       description: "type이 'single'일 때, 모든 아이템을 닫을 수 있는지 여부",
     },
-    defaultValue: {
-      control: "object", // 배열 또는 문자열이 될 수 있으므로 object로 지정하거나, 스토리별로 직접 설정
-      description:
-        "초기에 열려있을 아이템의 값 (type='single'이면 string, type='multiple'이면 string[])",
-    },
-    // children prop은 Basic 스토리에서 컨트롤 가능하도록 하고, 다른 스토리에서는 직접 내용을 정의합니다.
   },
 };
 
@@ -73,7 +70,10 @@ export const Basic: Story = {
       control: false,
       description: "아코디언 내부에 들어갈 AccordionItem들 입니다.",
     },
-    defaultValue: { control: false },
+    defaultValue: {
+      control: false,
+      description: "초기에 열려있는 아이템의 값",
+    },
   },
   parameters: {
     docs: {
@@ -82,7 +82,6 @@ export const Basic: Story = {
       },
       source: {
         code: `
-// 기본 데이터 예시 (실제 사용 시에는 동적으로 데이터를 가져오거나 정의할 수 있습니다)
 const accordionItems = [
   {
     value: "item-1",
@@ -101,7 +100,6 @@ const accordionItems = [
   },
 ];
 
-// Accordion 컴포넌트 사용 예시
 <Accordion type="single" collapsible className="w-full">
   {accordionItems.map((item) => (
     <AccordionItem key={item.value} value={item.value}>
