@@ -10,13 +10,20 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { PropsSingle } from "react-day-picker";
 
-interface DatePickerProps {
+type DatePickerProps = Omit<PropsSingle, "mode"> & {
   date: Date | undefined;
   setDate: Dispatch<SetStateAction<Date | undefined>>;
-}
+  disabled?: boolean;
+};
 
-export default function DatePicker({ date, setDate }: DatePickerProps) {
+export default function DatePicker({
+  date,
+  setDate,
+  disabled,
+  ...props
+}: DatePickerProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -58,6 +65,8 @@ export default function DatePicker({ date, setDate }: DatePickerProps) {
           onSelect={setDate}
           defaultMonth={date}
           endMonth={new Date()}
+          disabled={disabled}
+          {...props}
         />
       </PopoverContent>
     </Popover>

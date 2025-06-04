@@ -17,6 +17,7 @@ const meta: Meta<typeof Tabs> = {
         height: "300px", // 스토리 표시 영역 높이 조절
       },
     },
+    exclude: ["className", "children", "items"],
   },
   tags: ["autodocs"],
   argTypes: {
@@ -26,8 +27,6 @@ const meta: Meta<typeof Tabs> = {
       description:
         "탭 레이아웃을 설정합니다. `full`은 일반적인 스크롤 가능한 탭, `compact`는 탭 아이템들이 공간을 균등하게 채웁니다.",
     },
-    className: { control: false },
-    children: { control: false },
   },
 };
 
@@ -56,12 +55,11 @@ const Template: StoryObj<TabStoryProps> = {
         {items.map((item) => (
           <TabsList
             key={item.id}
-            href={item.href} // 실제 Link 동작을 위해 href 사용
+            href={item.href}
             active={activeTab === item.id}
             onClick={(e) => {
-              e.preventDefault(); // Storybook 내에서 페이지 이동 방지
+              e.preventDefault();
               setActiveTab(item.id);
-              console.log(`${item.label} 클릭됨, ID: ${item.id}`);
             }}
           >
             {item.label}
@@ -103,6 +101,9 @@ return (
 );
         `,
       },
+      controls: {
+        exclude: ["items"],
+      },
     },
   },
 };
@@ -110,7 +111,7 @@ return (
 export const Basic: StoryObj<TabStoryProps> = {
   ...Template,
   args: {
-    items: tabItems.slice(0, 4), // 기본 4개 탭
+    items: tabItems.slice(0, 4),
     initialActiveTab: "tab1",
     layout: "full",
   },
@@ -129,7 +130,7 @@ export const Basic: StoryObj<TabStoryProps> = {
 export const CompactLayout: StoryObj<TabStoryProps> = {
   ...Template,
   args: {
-    items: tabItems.slice(0, 3), // Compact 예시용 3개 탭
+    items: tabItems.slice(0, 3),
     initialActiveTab: "tab2",
     layout: "compact",
   },
@@ -148,15 +149,15 @@ export const CompactLayout: StoryObj<TabStoryProps> = {
 export const Scrollable: StoryObj<TabStoryProps> = {
   ...Template,
   args: {
-    items: tabItems, // 모든 탭 아이템 (6개)
+    items: tabItems,
     initialActiveTab: "tab3",
     layout: "full",
-    className: "w-72", // 스크롤을 유도하기 위해 너비를 고정 값으로 명확히 설정 (예: w-72는 288px)
+    className: "w-72",
   },
   parameters: {
     ...Template.parameters,
     docs: {
-      ...(Template.parameters?.docs || {}), // Template.parameters.docs가 없을 경우를 대비
+      ...(Template.parameters?.docs || {}),
       description: {
         story:
           "탭 아이템의 총 너비가 `Tabs` 컨테이너 너비를 초과하여 가로 스크롤이 발생하는 예시입니다. 마우스 드래그로 스크롤할 수 있습니다. (컨테이너 너비 w-72로 고정)",
