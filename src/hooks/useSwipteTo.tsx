@@ -51,7 +51,6 @@ const useSwipeToCloseSheet = ({
   }, [containerRef]);
 
   const handleStart = useCallback((e: TouchEvent) => {
-    console.log("start?");
     setSwipeState({
       startY: e.touches[0].clientY,
       isDragging: true,
@@ -61,7 +60,6 @@ const useSwipeToCloseSheet = ({
 
   const handleMove = useCallback(
     (e: TouchEvent) => {
-      console.log("move?");
       const { startY, isDragging } = swipeState;
       if (startY === null || !isDragging) return;
 
@@ -79,7 +77,6 @@ const useSwipeToCloseSheet = ({
 
   const handleEnd = useCallback(() => {
     const { thresholdReached } = swipeState;
-
     if (thresholdReached) {
       onClose();
     }
@@ -95,17 +92,16 @@ const useSwipeToCloseSheet = ({
 
   useEffect(() => {
     const element = swipeRef.current;
-    console.log("element", element, isOpen);
     if (!element || !isOpen) return;
 
     element.addEventListener("touchstart", handleStart, { passive: true });
-    document.addEventListener("touchmove", handleMove, { passive: false });
-    document.addEventListener("touchend", handleEnd, { passive: true });
+    element.addEventListener("touchmove", handleMove, { passive: false });
+    element.addEventListener("touchend", handleEnd, { passive: true });
 
     return () => {
       element.removeEventListener("touchstart", handleStart);
-      document.removeEventListener("touchmove", handleMove);
-      document.removeEventListener("touchend", handleEnd);
+      element.removeEventListener("touchmove", handleMove);
+      element.removeEventListener("touchend", handleEnd);
     };
   }, [swipeRef, handleStart, handleMove, handleEnd, isOpen]);
 };

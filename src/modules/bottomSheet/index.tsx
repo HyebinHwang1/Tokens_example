@@ -67,16 +67,7 @@ function BottomSheetContent({
   showHandleBar?: boolean;
   isOpen: boolean;
 }) {
-  const swipeRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  useSwipeToCloseSheet({
-    swipeRef,
-    containerRef: contentRef,
-    threshold: 100,
-    onClose,
-    isOpen,
-  });
 
   return (
     <>
@@ -84,17 +75,19 @@ function BottomSheetContent({
       <SheetPrimitive.Content
         data-slot="sheet-content"
         className={cn(
-          "sheet-content p-4 bg-white data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
-          "rounded-t-lg data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
+          "sheet-content p-4 bg-white data-[state=open]:animate-in fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
+          "rounded-t-lg data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
           className
         )}
         {...props}
         ref={contentRef}
       >
         {showHandleBar && (
-          <div className="flex justify-center pt-4 pb-6" ref={swipeRef}>
-            <div className="min-h-1 w-10 bg-gray-200 rounded-sm" />
-          </div>
+          <BottomSheetHandleBar
+            containerRef={contentRef}
+            onClose={onClose}
+            isOpen={isOpen}
+          />
         )}
         {children}
         {showClose && (
@@ -105,6 +98,32 @@ function BottomSheetContent({
         )}
       </SheetPrimitive.Content>
     </>
+  );
+}
+
+function BottomSheetHandleBar({
+  containerRef,
+  onClose,
+  isOpen,
+}: {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  onClose: () => void;
+  isOpen: boolean;
+}) {
+  const swipeRef = useRef<HTMLDivElement>(null);
+
+  useSwipeToCloseSheet({
+    swipeRef,
+    containerRef,
+    threshold: 100,
+    onClose,
+    isOpen,
+  });
+
+  return (
+    <div className="flex justify-center pt-4 pb-6" ref={swipeRef}>
+      <div className="min-h-1 w-10 bg-gray-200 rounded-sm" />
+    </div>
   );
 }
 
