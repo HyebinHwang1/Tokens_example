@@ -15,7 +15,6 @@ interface useSwipeToCloseSheetProps {
   containerRef: RefObject<HTMLDivElement | null>;
   threshold: number;
   onClose: () => void;
-  isOpen: boolean;
 }
 
 const useSwipeToCloseSheet = ({
@@ -23,7 +22,6 @@ const useSwipeToCloseSheet = ({
   containerRef,
   threshold,
   onClose,
-  isOpen,
 }: useSwipeToCloseSheetProps) => {
   const [swipeState, setSwipeState] = useState<SwipeState>({
     startY: null,
@@ -92,7 +90,7 @@ const useSwipeToCloseSheet = ({
 
   useEffect(() => {
     const element = swipeRef.current;
-    if (!element || !isOpen) return;
+    if (!element) return;
 
     element.addEventListener("touchstart", handleStart, { passive: true });
     element.addEventListener("touchmove", handleMove, { passive: false });
@@ -103,7 +101,7 @@ const useSwipeToCloseSheet = ({
       element.removeEventListener("touchmove", handleMove);
       element.removeEventListener("touchend", handleEnd);
     };
-  }, [swipeRef, handleStart, handleMove, handleEnd, isOpen]);
+  }, [swipeRef, handleStart, handleMove, handleEnd]);
 };
 
 export default useSwipeToCloseSheet;
