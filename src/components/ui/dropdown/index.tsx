@@ -6,8 +6,7 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { cn } from "@/lib/utils";
 import { ChevronDownIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SetStateAction } from "react";
-import { Dispatch } from "react";
+import SimpleDropdown from "./simpleDropdown";
 
 function Dropdown({
   ...props
@@ -111,38 +110,6 @@ function DropdownItem({
     >
       {props.children}
     </DropdownMenuPrimitive.Item>
-  );
-}
-
-interface SimpleDropdownProps {
-  open: boolean;
-  buttonText: string;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
-  items: {
-    label: string;
-    onClick: () => void;
-  }[];
-}
-
-function SimpleDropdown({
-  open,
-  buttonText,
-  onOpenChange,
-  items,
-}: SimpleDropdownProps) {
-  return (
-    <Dropdown open={open} onOpenChange={onOpenChange}>
-      <DropdownTrigger asChild>
-        <DropdownArrowButton open={open}>{buttonText}</DropdownArrowButton>
-      </DropdownTrigger>
-      <DropdownContent>
-        {items.map((item) => (
-          <DropdownItem key={item.label} onClick={item.onClick}>
-            {item.label}
-          </DropdownItem>
-        ))}
-      </DropdownContent>
-    </Dropdown>
   );
 }
 

@@ -11,7 +11,7 @@ import {
   AlertTrigger,
 } from "./index";
 import { Button } from "@/components/ui/button";
-import SimpleAlert from "./simple";
+import SimpleAlert from "./simpleAlert";
 
 const meta: Meta<typeof Alert> = {
   title: "Modules/Alert",

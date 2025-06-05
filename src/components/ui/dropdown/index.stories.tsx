@@ -31,23 +31,20 @@ const meta: Meta<DropdownStoryProps> = {
   argTypes: {
     open: {
       control: "boolean",
-      description: "ドロップダウン開閉状態 (Dropdown open/close state)",
+      description: "드롭다운 열림/닫힘 상태",
     },
     onOpenChange: {
       action: "onOpenChange",
-      description:
-        "ドロップダウン開閉状態変更コールバック (Dropdown open/close state change callback)",
+      description: "드롭다운 열림/닫힘 상태 변경 콜백",
     },
     sideOffset: {
       control: "number",
-      description:
-        "DropdownContentとTrigger間の距離 (px) (Distance between DropdownContent and Trigger (px))",
+      description: "DropdownContent와 Trigger 사이의 거리 (px)",
     },
     align: {
       control: "select",
       options: ["start", "center", "end"],
-      description:
-        "DropdownContentの配置方向 (Alignment direction of DropdownContent)",
+      description: "DropdownContent의 정렬 방향",
     },
   },
 };
@@ -118,7 +115,7 @@ export const Basic: StoryObj<DropdownStoryProps> = {
       source: {
         code: `const [open, setOpen] = React.useState(false);
 
-<Dropdown open={open} onOpenChange={setOpen}>
+<Dropdown open={open} onOpenChange={(open)=>setOpen(open)}>
   <DropdownTrigger asChild>
       <DropdownArrowButton open={open}>プロフィール</DropdownArrowButton>
   </DropdownTrigger>
@@ -141,15 +138,8 @@ export const Basic: StoryObj<DropdownStoryProps> = {
       setOpen(!!args.open);
     }, [args.open]);
 
-    const handleOpenChange = (newOpenState: boolean) => {
-      setOpen(newOpenState);
-      if (args.onOpenChange) {
-        args.onOpenChange(newOpenState);
-      }
-    };
-
     return (
-      <Dropdown open={open} onOpenChange={handleOpenChange}>
+      <Dropdown open={open} onOpenChange={(open) => setOpen(open)}>
         <DropdownTrigger asChild>
           <DropdownArrowButton open={open}>プロフィール</DropdownArrowButton>
         </DropdownTrigger>
@@ -192,7 +182,7 @@ const [open, setOpen] = React.useState(false);
 <SimpleDropdown
   open={open}
   buttonText="プロフィール"
-  onOpenChange={setOpen}
+  onOpenChange={(open) => setOpen(open)}
   items={basicDropdownItems.map((item) => ({
     label: item.label,
     onClick: () => {},
@@ -314,15 +304,8 @@ export const WithGroups: StoryObj<DropdownStoryProps> = {
       setOpen(!!args.open);
     }, [args.open]);
 
-    const handleOpenChange = (newOpenState: boolean) => {
-      setOpen(newOpenState);
-      if (args.onOpenChange) {
-        args.onOpenChange(newOpenState);
-      }
-    };
-
     return (
-      <Dropdown open={open} onOpenChange={handleOpenChange}>
+      <Dropdown open={open} onOpenChange={(open) => setOpen(open)}>
         <DropdownTrigger asChild>
           <DropdownArrowButton open={open}>メニューを開く</DropdownArrowButton>
         </DropdownTrigger>
