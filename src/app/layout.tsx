@@ -22,10 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${pretendard.className} ${notoSansJP.variable} antialiased`}
-      >
+    <html>
+      <body className={`${pretendard.variable} ${notoSansJP.variable}`}>
         {children}
       </body>
     </html>

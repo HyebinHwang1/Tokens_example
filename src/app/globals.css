@@ -1,10 +1,6 @@
 @import "tailwindcss";
-@import "./theme.css";
+@import "./goodTest.css";
 @plugin "tailwindcss-animate";
-
-@utility text-2xs {
-  font-size: 10px;
-}
 
 @utility scrollbar-hidden {
   &::-webkit-scrollbar {
@@ -14,4 +10,9 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+body {
+  font-family:
+    var(--font-noto-sans-jp), var(--font-pretendard), system-ui, sans-serif;
 }
