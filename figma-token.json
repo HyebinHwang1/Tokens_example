@@ -1,5 +1,5 @@
 {
-  "Collection 1/Mode 1": {
+  "#01nugu_Primitive_Token/Mode 1": {
     "Color": {
       "gray": {
         "0": {
@@ -35,7 +35,7 @@
           "$value": "#4d4d4d"
         }
       },
-      "red": {
+      "primary": {
         "100": {
           "$type": "color",
           "$value": "#f7cecc"
@@ -57,7 +57,7 @@
           "$value": "#2b0200"
         }
       },
-      "blue": {
+      "secondary": {
         "100": {
           "$type": "color",
           "$value": "#d8e6fd"
@@ -166,7 +166,7 @@
   "$themes": [],
   "$metadata": {
     "tokenSetOrder": [
-      "Collection 1/Mode 1"
+      "#01nugu_Primitive_Token/Mode 1"
     ]
   }
 }
