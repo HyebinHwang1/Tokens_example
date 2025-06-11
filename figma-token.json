@@ -165,8 +165,6 @@
   },
   "$themes": [],
   "$metadata": {
-    "tokenSetOrder": [
-      "#01nugu_Primitive_Token/Mode 1"
-    ]
+    "tokenSetOrder": ["#01nugu_Primitive_Token/Mode 1"]
   }
 }

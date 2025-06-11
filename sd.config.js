@@ -1,4 +1,5 @@
 import StyleDictionary from "style-dictionary";
+import { transforms, transformTypes } from "style-dictionary/enums";
 
 const sd = new StyleDictionary({
   platforms: {
@@ -6,11 +7,27 @@ const sd = new StyleDictionary({
       transformGroup: "css",
       files: [
         {
-          destination: "./src/app/theme.css",
+          destination: "./goodTest.css",
           format: "css/variables",
         },
       ],
     },
+  },
+});
+
+await sd.registerTransform({
+  name: transforms.timeSeconds,
+  type: transformTypes.value,
+  filter: function (token) {
+    console.log("token!");
+    return token.attributes.category === "#01nugu_Primitive_Token/Mode 1";
+  },
+  transform: function (token) {
+    console.log("transform");
+    // Note the use of prop.original.value,
+    // before any transforms are performed, the build system
+    // clones the original token to the 'original' attribute.
+    // return (parseInt(token.original.value) / 1000).tostring() + "s";
   },
 });
 
@@ -19,7 +36,10 @@ await sd.registerFormat({
   format: function (params) {
     const tokens = params.allTokens;
     const names = tokens.map((token) => {
-      return { [token.name.replaceAll("core-", "--color-")]: token["$value"] };
+      return {
+        [token.name.replaceAll("01nugu-primitive-token-mode-1", "-")]:
+          token["value"],
+      };
     });
 
     const cssVariables = names
@@ -35,6 +55,7 @@ await sd.registerFormat({
 
 await (
   await sd.extend({
-    source: ["figma_token.json"],
+    source: ["token.json"],
+    // source: ["figma_token.json"],
   })
 ).buildAllPlatforms();
